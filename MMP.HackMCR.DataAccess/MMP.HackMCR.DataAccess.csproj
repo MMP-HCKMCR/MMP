@@ -43,6 +43,7 @@
     <Compile Include="DataHelper.cs" />
     <Compile Include="Objects\EventType.cs" />
     <Compile Include="Objects\Group.cs" />
+    <Compile Include="Objects\Log.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Repositories\EventTypeRepository.cs" />
     <Compile Include="Repositories\GroupRepository.cs" />

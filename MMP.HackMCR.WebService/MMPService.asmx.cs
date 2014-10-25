@@ -252,6 +252,7 @@ namespace MMP.HackMCR.WebService
         #endregion                                                                                
 
         #region Events
+        [WebMethod]
         public Event AddUserEvent(string userName, int eventType)
         {
             return new Event
@@ -263,7 +264,20 @@ namespace MMP.HackMCR.WebService
             };
         }
 
+        [WebMethod]
         public Event AddUserEventByEventTypeName(string userName, string eventTypeName)
+        {
+            return new Event
+            {
+                EventId = 1,
+                EventTime = DateTime.UtcNow,
+                EventType = new EventType(),
+                User = new User()
+            };
+        }
+
+        [WebMethod]
+        public Event AddUserEventByEventTypeId(string userName, int eventTypeId)
         {
             return new Event
             {
