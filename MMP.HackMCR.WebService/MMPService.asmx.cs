@@ -19,15 +19,7 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public User AddUser(string name, string userName, string token, string mobileNumber, string password, string emailAddress)
         {
-            return new User
-            {
-                UserId = 1,
-                Name = name,
-                UserName = userName,
-                Token = token,
-                MobileNumber = mobileNumber,
-                Groups = new List<Group>()
-            };
+            return UserManager.AddUser(name, userName, password, token, mobileNumber, emailAddress);            
         }
 
         [WebMethod]
@@ -53,15 +45,7 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public List<User> GetAllUsers()
         {
-            return new List<User>{new User
-            {
-                UserId = 1,
-                Name = "FirstName",
-                UserName = "UserName",
-                Token = "token",
-                MobileNumber = "mobileNumber",
-                Groups = new List<Group>()
-            }};
+            return UserManager.GetAllUsers();            
         }
 
         [WebMethod]
@@ -87,6 +71,7 @@ namespace MMP.HackMCR.WebService
                 UserName = "User Name",
                 Token = "Token",
                 Name = "Name",
+                Email = "email address",
                 MobileNumber = "Mobile Number",
                 Groups = new List<Group>()
             };
