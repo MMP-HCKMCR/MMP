@@ -2,6 +2,7 @@
 using System.Web.Services;
 using MMP.HackMCR.BusinessLogic;
 using MMP.HackMCR.DataContract;
+using System;
 
 namespace MMP.HackMCR.WebService
 {
@@ -108,7 +109,7 @@ namespace MMP.HackMCR.WebService
         }
 
         [WebMethod]
-        public Group GetGroup(int groupId)
+        public Group GetGroupById(int groupId)
         {
             return new Group
             {
@@ -119,7 +120,7 @@ namespace MMP.HackMCR.WebService
         }
 
         [WebMethod]
-        public Group GetGroup(string GroupName)
+        public Group GetGroupByName(string GroupName)
         {
             return new Group
             {
@@ -214,7 +215,7 @@ namespace MMP.HackMCR.WebService
         }
 
         [WebMethod]
-        public EventType GetEventType(int eventTypeId)
+        public EventType GetEventTypeById(int eventTypeId)
         {
             return new EventType
             {
@@ -224,7 +225,7 @@ namespace MMP.HackMCR.WebService
         }
 
         [WebMethod]
-        public EventType GetEventType(string eventTypeName)
+        public EventType GetEventTypeByName(string eventTypeName)
         {
             return new EventType
             {
@@ -249,5 +250,29 @@ namespace MMP.HackMCR.WebService
 
         }
         #endregion                                                                                
+
+        #region Events
+        public Event AddUserEvent(string userName, int eventType)
+        {
+            return new Event
+            {
+                EventId = 1,
+                EventTime = DateTime.UtcNow,
+                EventType = new EventType(),
+                User = new User()
+            };
+        }
+
+        public Event AddUserEventByEventTypeName(string userName, string eventTypeName)
+        {
+            return new Event
+            {
+                EventId = 1,
+                EventTime = DateTime.UtcNow,
+                EventType = new EventType(),
+                User = new User()
+            };
+        }
+        #endregion
     }
 }
