@@ -1,0 +1,6 @@
+C:\GitHub\MMP\MMP.HackMCR.Website\bin\MMP.HackMCR.Website.dll.config
+C:\GitHub\MMP\MMP.HackMCR.Website\bin\MMP.HackMCR.Website.dll
+C:\GitHub\MMP\MMP.HackMCR.Website\bin\MMP.HackMCR.Website.pdb
+C:\GitHub\MMP\MMP.HackMCR.Website\obj\Debug\MMP.HackMCR.Website.csprojResolveAssemblyReference.cache
+C:\GitHub\MMP\MMP.HackMCR.Website\obj\Debug\MMP.HackMCR.Website.dll
+C:\GitHub\MMP\MMP.HackMCR.Website\obj\Debug\MMP.HackMCR.Website.pdb

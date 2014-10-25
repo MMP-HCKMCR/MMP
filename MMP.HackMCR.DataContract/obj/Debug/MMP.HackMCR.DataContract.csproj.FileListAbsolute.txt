@@ -3,3 +3,8 @@ C:\GitHub\MMP\MMP.HackMCR.DataAccess\bin\Debug\MMP.HackMCR.DataContract.pdb
 C:\GitHub\MMP\MMP.HackMCR.DataAccess\obj\Debug\MMP.HackMCR.DataContract.csprojResolveAssemblyReference.cache
 C:\GitHub\MMP\MMP.HackMCR.DataAccess\obj\Debug\MMP.HackMCR.DataContract.dll
 C:\GitHub\MMP\MMP.HackMCR.DataAccess\obj\Debug\MMP.HackMCR.DataContract.pdb
+C:\GitHub\MMP\MMP.HackMCR.DataContract\bin\Debug\MMP.HackMCR.DataContract.dll
+C:\GitHub\MMP\MMP.HackMCR.DataContract\bin\Debug\MMP.HackMCR.DataContract.pdb
+C:\GitHub\MMP\MMP.HackMCR.DataContract\obj\Debug\MMP.HackMCR.DataContract.csprojResolveAssemblyReference.cache
+C:\GitHub\MMP\MMP.HackMCR.DataContract\obj\Debug\MMP.HackMCR.DataContract.dll
+C:\GitHub\MMP\MMP.HackMCR.DataContract\obj\Debug\MMP.HackMCR.DataContract.pdb

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.DataAccess", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.Website", "MMP.HackMCR.Website\MMP.HackMCR.Website.csproj", "{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.WebService", "MMP.HackMCR.WebService\MMP.HackMCR.WebService.csproj", "{9311F8F8-C3B0-43F3-82F6-B410C36CFECD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9311F8F8-C3B0-43F3-82F6-B410C36CFECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9311F8F8-C3B0-43F3-82F6-B410C36CFECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9311F8F8-C3B0-43F3-82F6-B410C36CFECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9311F8F8-C3B0-43F3-82F6-B410C36CFECD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
