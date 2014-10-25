@@ -38,7 +38,7 @@ namespace MMP.HackMCR.WebService
         }
 
         [WebMethod]
-        public User GetUser(int userId)
+        public User GetUserById(int userId)
         {
             return UserManager.GetUser(userId);
         }
@@ -50,7 +50,7 @@ namespace MMP.HackMCR.WebService
         }
 
         [WebMethod]
-        public User GetUser(string userName)
+        public User GetUserByName(string userName)
         {
             return new User
             {
