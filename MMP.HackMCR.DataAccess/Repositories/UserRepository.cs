@@ -5,9 +5,9 @@ using MMP.HackMCR.DataAccess.Objects;
 
 namespace MMP.HackMCR.DataAccess.Repositories
 {
-    public class UserRepository
+    public static class UserRepository
     {
-        public User GetUser(int userId)
+        public static User GetUser(int userId)
         {
             var parameters = new List<SqlParameter>
             {
@@ -17,7 +17,7 @@ namespace MMP.HackMCR.DataAccess.Repositories
             return PopulateUserFromDataTable(DataHelper.PopulateTable("sp_GetUserForUserId", parameters));
         }
 
-        private User PopulateUserFromDataTable(DataTable dataTable)
+        private static User PopulateUserFromDataTable(DataTable dataTable)
         {
             var result = new User();
 

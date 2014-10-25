@@ -76,6 +76,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MMP.HackMCR.BusinessLogic\MMP.HackMCR.BusinessLogic.csproj">
+      <Project>{218a73eb-d4a7-4400-bfb0-1e2e81125172}</Project>
+      <Name>MMP.HackMCR.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MMP.HackMCR.DataContract\MMP.HackMCR.DataContract.csproj">
       <Project>{7e1c4b12-fcdf-4a5e-8271-6bad36940074}</Project>
       <Name>MMP.HackMCR.DataContract</Name>

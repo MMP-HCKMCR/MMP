@@ -10,7 +10,7 @@ namespace MMP.HackMCR.DataAccess
         public static DataTable PopulateTable(string storedProcName, List<SqlParameter> parameters)
         {
             var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MMPDatabase"].ToString());
-            var command = new SqlCommand("storedProcName", connection)
+            var command = new SqlCommand(storedProcName, connection)
             {
                 CommandType = CommandType.StoredProcedure
             };

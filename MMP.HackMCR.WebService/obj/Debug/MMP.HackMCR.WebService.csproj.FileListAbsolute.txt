@@ -6,3 +6,7 @@ C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.DataContract.pdb
 C:\GitHub\MMP\MMP.HackMCR.WebService\obj\Debug\MMP.HackMCR.WebService.csprojResolveAssemblyReference.cache
 C:\GitHub\MMP\MMP.HackMCR.WebService\obj\Debug\MMP.HackMCR.WebService.dll
 C:\GitHub\MMP\MMP.HackMCR.WebService\obj\Debug\MMP.HackMCR.WebService.pdb
+C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.BusinessLogic.dll
+C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.DataAccess.dll
+C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.BusinessLogic.pdb
+C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.DataAccess.pdb

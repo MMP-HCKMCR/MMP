@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Services;
+using MMP.HackMCR.BusinessLogic;
 using MMP.HackMCR.DataContract;
 
 namespace MMP.HackMCR.WebService
@@ -32,7 +33,7 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public User GetUser(int userId)
         {
-            return new User();
+            return UserManager.GetUser(userId);
         }
     }
 }
