@@ -64,6 +64,16 @@ namespace MMP.HackMCR.DataAccess.Repositories
             return PopulateUsersFromDataTable(DataHelper.PopulateTable("sp_GetAllUsersAlphabetically", null));
         }
 
+        public static List<User> GetUsersForGroup(int groupId)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@GroupId", groupId)
+            };
+
+            return  PopulateUsersFromDataTable(DataHelper.PopulateTable("sp_GetUsersForGroupId", parameters));
+        }
+
         private static User PopulateUserFromDataTable(DataTable dataTable)
         {
             return dataTable.Rows.Count > 0 ? PopulateUserFromDataRow(dataTable.Rows[0]) : null;

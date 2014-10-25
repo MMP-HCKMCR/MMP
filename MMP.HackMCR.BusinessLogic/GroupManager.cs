@@ -32,6 +32,11 @@ namespace MMP.HackMCR.BusinessLogic
             return MapGroup(GroupRepository.GetAllGroups());
         }
 
+        public static List<Group> GetGroupsForUser(int userId)
+        {
+            
+        }
+
         public static List<Group> MapGroup(List<DataAccess.Objects.Group> group)
         {
             return group.Select(MapGroup).ToList();
@@ -39,10 +44,13 @@ namespace MMP.HackMCR.BusinessLogic
 
         private static Group MapGroup(DataAccess.Objects.Group group)
         {
+            var users = UserManager.GetUsersForGroupId(group.GroupId);
+
             return new Group
             {
                 GroupId = group.GroupId,
-                GroupName = group.GroupName
+                GroupName = group.GroupName,
+                Users = users
             };
         }
     }

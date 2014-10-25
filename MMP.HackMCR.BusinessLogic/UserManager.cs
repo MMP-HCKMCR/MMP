@@ -32,6 +32,11 @@ namespace MMP.HackMCR.BusinessLogic
             return MapUsers(UserRepository.GetAllUsers());
         }
 
+        public static List<User> GetUsersForGroupId(int groupId)
+        {
+            return MapUsers(UserRepository.GetUsersForGroup(groupId));
+        }
+
         public static List<User> MapUsers(List<DataAccess.Objects.User> users)
         {
             return users.Select(MapUser).ToList();

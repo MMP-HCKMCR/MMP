@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using MMP.HackMCR.DataAccess.Objects;
 
@@ -52,6 +53,16 @@ namespace MMP.HackMCR.DataAccess.Repositories
         public static List<Group> GetAllGroups()
         {
             return PopulateGroupsFromDataTable(DataHelper.PopulateTable("sp_GetAllUsersAlphabetically", null));
+        }
+
+        public static List<Group> GetGroupsForUserId(int userId)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@UserId", userId)
+            };
+
+            return PopulateGroupsFromDataTable(DataHelper.PopulateTable("sp_GetGroupsForUserId", parameters));
         }
 
         private static Group PopulateGroupFromDataTable(DataTable dataTable)
