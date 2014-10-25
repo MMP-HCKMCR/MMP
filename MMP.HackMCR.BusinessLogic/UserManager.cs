@@ -44,6 +44,8 @@ namespace MMP.HackMCR.BusinessLogic
 
         private static User MapUser(DataAccess.Objects.User user)
         {
+            var groups = GroupManager.GetGroupsForUser(user.UserId);
+
             return new User
             {
                 UserId = user.UserId,
@@ -52,7 +54,7 @@ namespace MMP.HackMCR.BusinessLogic
                 Token = user.Token,
                 MobileNumber = user.MobilePhone,
                 Email = user.Email,
-                Groups = new List<Group>()
+                Groups = groups
             };
         }
     }

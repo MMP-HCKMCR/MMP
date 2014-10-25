@@ -29,15 +29,15 @@ namespace MMP.HackMCR.BusinessLogic
 
         public static List<Group> GetAllUsers()
         {
-            return MapGroup(GroupRepository.GetAllGroups());
+            return MapGroups(GroupRepository.GetAllGroups());
         }
 
         public static List<Group> GetGroupsForUser(int userId)
         {
-            
+            return MapGroups(GroupRepository.GetGroupsForUserId(userId));
         }
 
-        public static List<Group> MapGroup(List<DataAccess.Objects.Group> group)
+        public static List<Group> MapGroups(List<DataAccess.Objects.Group> group)
         {
             return group.Select(MapGroup).ToList();
         }
