@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.DataContract", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.DataAccess", "MMP.HackMCR.DataAccess\MMP.HackMCR.DataAccess.csproj", "{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.Website", "MMP.HackMCR.Website\MMP.HackMCR.Website.csproj", "{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
