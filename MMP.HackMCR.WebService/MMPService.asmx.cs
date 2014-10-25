@@ -1,4 +1,5 @@
-﻿using System.Web.Services;
+﻿using System.Collections.Generic;
+using System.Web.Services;
 using MMP.HackMCR.DataContract;
 
 namespace MMP.HackMCR.WebService
@@ -13,6 +14,21 @@ namespace MMP.HackMCR.WebService
     // [System.Web.Script.Services.ScriptService]
     public class MMPService : System.Web.Services.WebService
     {
+        [WebMethod]
+
+        public User AddUser(string name, string userName, string token, string mobileNumber)
+        {
+            return new User
+            {
+                UserId = 1,
+                Name = name,
+                UserName = userName,
+                Token = token,
+                MobileNumber = mobileNumber,
+                Groups = new List<Group>()
+            };
+        }
+
         [WebMethod]
         public User GetUser(int userId)
         {

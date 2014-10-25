@@ -45,6 +45,9 @@ namespace MMP.HackMCR.DataContract
         }
 
         [DataMember]
+        public string Name { set; get; }
+
+        [DataMember]
         public string MobileNumber
         {
             get { return _mobileNumber; }
