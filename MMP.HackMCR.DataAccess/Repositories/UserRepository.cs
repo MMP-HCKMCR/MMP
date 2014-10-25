@@ -7,6 +7,19 @@ namespace MMP.HackMCR.DataAccess.Repositories
 {
     public static class UserRepository
     {
+        public static User AddUser(string name, string userName, string token, string mobileNumber)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@Name", name),
+                new SqlParameter("@UserName", userName),
+                new SqlParameter("@Token", token),
+                new SqlParameter("@MobileNumber", mobileNumber)
+            };
+
+            return PopulateUserFromDataTable(DataHelper.PopulateTable("sp_AddUserDetails", parameters));
+        }
+
         public static User GetUser(int userId)
         {
             var parameters = new List<SqlParameter>

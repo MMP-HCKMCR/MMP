@@ -10,11 +10,19 @@ namespace MMP.HackMCR.BusinessLogic
 {
     public static class UserManager
     {
+        public static User AddUser(string name, string userName, string token, string mobileNumber)
+        {
+            return MapUser(UserRepository.AddUser(name, userName, token, mobileNumber));
+        }
+
         public static User GetUser(int userId)
         {
-            var user = UserRepository.GetUser(userId);
+            return MapUser(UserRepository.GetUser(userId));
+        }
 
-            var result = new User
+        private static User MapUser(DataAccess.Objects.User user)
+        {
+            return new User
             {
                 UserId = user.UserId,
                 Name = user.Name,
@@ -23,8 +31,6 @@ namespace MMP.HackMCR.BusinessLogic
                 MobileNumber = user.MobilePhone,
                 Groups = new List<Group>()
             };
-
-            return result;
         }
     }
 }
