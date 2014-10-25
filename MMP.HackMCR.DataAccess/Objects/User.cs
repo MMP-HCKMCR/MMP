@@ -13,5 +13,6 @@ namespace MMP.HackMCR.DataAccess.Objects
         public string UserName { set; get; }
         public string Token { set; get; }
         public string MobilePhone { set; get; }
+        public string Email { set; get; }
     }
 }

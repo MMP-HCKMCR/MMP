@@ -15,7 +15,11 @@ namespace MMP.HackMCR.DataAccess
                 CommandType = CommandType.StoredProcedure
             };
 
-            command.Parameters.AddRange(parameters.ToArray());
+            if (parameters != null)
+            {
+                command.Parameters.AddRange(parameters.ToArray());
+            }
+
             connection.Open();
 
             var table = new DataTable();
