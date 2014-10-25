@@ -1,0 +1,116 @@
+﻿body
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: white;
+    color: black;
+    overflow-x: hidden;
+}
+
+a
+{
+    color: orange;
+    text-decoration: underline;
+}
+
+a:hover, a:focus
+{
+    color: limegreen;
+}
+
+header
+{
+    background-color: orange;
+    width: 100%;
+}
+
+header #Title
+{
+    color: white !important;
+    text-shadow: 1px 1px 3px black;
+    font-size: 18px;
+    padding: 5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    padding-left: 15px;
+    text-decoration: none !important;
+}
+
+header #TagLine
+{
+    color: white !important;
+    font-size: 12px;
+    display: inline-block;
+    text-decoration: none !important;
+}
+
+#LoginContainer
+{
+    margin: 0 auto;
+    margin-top: 200px;
+    width: 35%;
+    padding: 20px;
+}
+
+#RegisterContainer
+{
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 50%;
+    padding: 20px;
+}
+
+.box-container
+{
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: ghostwhite;
+    box-shadow: 1px 2px 5px #888888;
+}
+
+input[type=text], input[type=password], input[type=email]
+{
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: white;
+    height: 25px;
+    width: 300px;
+    display: inline-block;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 2px;
+    padding-left: 5px;
+}
+
+input[type=submit]
+{
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: white;
+    height: 30px;
+    padding: 6px 12px 6px 12px;
+    background-color: orange;
+}
+
+label
+{
+    margin-right: 10px;
+}
+
+input[type=submit]:hover
+{
+    background-color: limegreen;
+    cursor: pointer;
+}
+
+#RegisterLink
+{
+    font-size: 13px;
+    margin-left: 15px;
+}
+
+.center-data
+{
+    margin: 0 auto;
+}

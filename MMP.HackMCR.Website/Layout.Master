@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="MMP.HackMCR.Website.Layout" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+    <head runat="server">
+        <title>My Meeting Pal | <%=PageName %></title>
+        <link type="text/css" rel="stylesheet" href="./Assets/Styles/Master.css" />
+        <link type="text/css" rel="stylesheet" href="./Assets/Styles/Core.css" />
+        <script type="text/javascript" src="./Assets/Scripts/jquery-2.1.1.min.js"></script>
+
+        <asp:ContentPlaceHolder ID="ContentHead" runat="server">
+        </asp:ContentPlaceHolder>
+    </head>
+
+    <body>
+        <form id="form1" runat="server">
+            <header>
+                <a href="./Default.aspx"><h1 id="Title">My Meeting Pal</h1></a>
+                <h3 id="TagLine"> | Enpowering Meeting</h3>
+            </header>
+
+            <div>
+                <asp:ContentPlaceHolder ID="ContentBody" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </form>
+    </body>
+
+</html>
