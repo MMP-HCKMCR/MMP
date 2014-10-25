@@ -89,34 +89,19 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public Group AddGroup(string groupName)
         {
-            return new Group
-            {
-                GroupId = 1,
-                GroupName = groupName,
-                Users = new List<User>()
-            };
+            return GroupManager.AddGroup(groupName);            
         }
 
         [WebMethod]
         public List<Group> GetAllGroups()
         {
-            return new List<Group>{new Group
-            {
-                GroupId = 1,
-                GroupName = "GroupName",
-                Users = new List<User>()
-            }};
+            return GroupManager.GetAllUsers();            
         }
 
         [WebMethod]
         public Group GetGroupById(int groupId)
         {
-            return new Group
-            {
-                GroupId = 1,
-                GroupName = "Group Name",
-                Users = new List<User>()
-            };
+            return GroupManager.GetGroup(groupId);            
         }
 
         [WebMethod]
@@ -164,18 +149,13 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public Group UpdateGroup(int groupId, string groupName)
         {
-            return new Group
-            {
-                GroupId = 1,
-                GroupName = "Group Name",
-                Users = new List<User>()
-            };
+            return GroupManager.UpdateUser(groupId, groupName);
         }
 
         [WebMethod]
         public void RemoveGroup(int groupId)
         {
-
+            GroupManager.RemoveGroup(groupId);
         }
 
         [WebMethod]
