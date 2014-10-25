@@ -1,0 +1,33 @@
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace MMP.HackMCR.DataAccess
+{
+    static class DataHelper
+    {
+        public static DataTable PopulateTable(string storedProcName, List<SqlParameter> parameters)
+        {
+            var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Test"].ToString());
+            var command = new SqlCommand("storedProcName", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            command.Parameters.AddRange(parameters.ToArray());
+            connection.Open();
+
+            var table = new DataTable();
+
+            var adaptor = new SqlDataAdapter(command);
+
+            adaptor.Fill(table);
+
+            connection.Close();
+            adaptor.Dispose();
+
+            return table;
+        }
+    }
+}

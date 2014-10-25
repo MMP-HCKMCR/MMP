@@ -1,0 +1,5 @@
+C:\GitHub\MMP\MMP.HackMCR.DataAccess\bin\Debug\MMP.HackMCR.DataAccess.dll
+C:\GitHub\MMP\MMP.HackMCR.DataAccess\bin\Debug\MMP.HackMCR.DataAccess.pdb
+C:\GitHub\MMP\MMP.HackMCR.DataAccess\obj\Debug\MMP.HackMCR.DataAccess.csprojResolveAssemblyReference.cache
+C:\GitHub\MMP\MMP.HackMCR.DataAccess\obj\Debug\MMP.HackMCR.DataAccess.dll
+C:\GitHub\MMP\MMP.HackMCR.DataAccess\obj\Debug\MMP.HackMCR.DataAccess.pdb

@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.DataContract", "MMP.HackMCR.DataContract\MMP.HackMCR.DataContract.csproj", "{7E1C4B12-FCDF-4A5E-8271-6BAD36940074}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.DataAccess", "MMP.HackMCR.DataAccess\MMP.HackMCR.DataAccess.csproj", "{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7E1C4B12-FCDF-4A5E-8271-6BAD36940074}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E1C4B12-FCDF-4A5E-8271-6BAD36940074}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E1C4B12-FCDF-4A5E-8271-6BAD36940074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
