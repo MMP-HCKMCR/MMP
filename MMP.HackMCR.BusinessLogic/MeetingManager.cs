@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using MMP.HackMCR.BusinessLogic.Object;
 using MMP.HackMCR.DataContract;
 
 namespace MMP.HackMCR.BusinessLogic
@@ -60,14 +62,67 @@ namespace MMP.HackMCR.BusinessLogic
             {
                 for (int i = 0; i < numberOfDays; i++)
                 {
-                    GetWorkingHoursForDay(user.UserId, startDate.AddDays(i));
+                    GetWorkingHoursForDay(user, startDate.AddDays(i));
                 }
             }
         }
 
-        private static void GetWorkingHoursForDay(int userId, DateTime date)
+        private static void GetWorkingHoursForDay(User user, DateTime date)
         {
-            var events = LogManager.GetUserLogsForDayOfWeek(userId, date.DayOfWeek.ToString());
+            var events = LogManager.GetUserLogsForDayOfWeek(user.UserId, date.DayOfWeek.ToString());
+
+            SeperateEventsIntoDays(user, events);
+        }
+
+        private static void SeperateEventsIntoDays(User user, List<Event> events)
+        {
+            var hourDetails = new List<HourDetails>();
+
+            DateTime currentDate = events[0].EventTime;
+            Event firstEventOfTheDay = events[0];
+            Event lastEventOfTheDay = events[0];
+
+            foreach (var currentEvent in events)
+            {
+                if (currentDate.ToShortDateString() != currentEvent.EventTime.ToShortDateString())
+                {
+                    HourDetails details = new HourDetails
+                    {
+                        StartTime =
+                            new DateTime(1970, 1, 1, firstEventOfTheDay.EventTime.Hour, 
+                                firstEventOfTheDay.EventTime.Minute, firstEventOfTheDay.EventTime.Second),
+                        EndTime = new DateTime(1970, 1, 1, lastEventOfTheDay.EventTime.Hour,
+                                                        lastEventOfTheDay.EventTime.Minute, lastEventOfTheDay.EventTime.Second)
+                    };
+
+                    hourDetails.Add(details);
+
+                    firstEventOfTheDay = currentEvent;
+                    currentDate = currentEvent.EventTime;
+                }
+
+                lastEventOfTheDay = currentEvent;
+            }
+
+            CalculateWorkingHours(user, hourDetails);
+        }
+
+        private static void CalculateWorkingHours(User user, List<HourDetails> hourDetails)
+        {
+            List<HourDetails> starts = hourDetails.OrderBy(s => s.StartTime).ToList();
+            List<HourDetails> ends = hourDetails.OrderBy(s => s.EndTime).ToList();
+
+            int index = 0;
+
+            if (starts.Count%2 != 0)
+            {
+                index = ((starts.Count - 1)/2) + 1;
+            }
+            else
+            {
+                
+            }
+
         }
     }
 }

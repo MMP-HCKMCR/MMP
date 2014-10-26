@@ -26,13 +26,13 @@ namespace MMP.HackMCR.BusinessLogic
         private static Event MapEvent(DataAccess.Objects.Log log)
         {
             var user = UserManager.GetUser(log.UserId);
-            //var eventType = EventTypeManager.GetEventType(log.EventTypeId);
+            var eventType = EventTypeManager.GetEventType(log.EventTypeId);
 
             return new Event
             {
                 EventId = log.LogId,
                 User = user,
-                EventType = new EventType(),
+                EventType = eventType,
                 EventTime = log.EventTime,
                 UserActive = log.UserActive
             };
