@@ -9,7 +9,7 @@ namespace MMP.HackMCR.BusinessLogic
 {
     public static class SessionManager
     {
-        public static Guid AddSession(int userId)
+        public static string AddSession(int userId)
         {
             return SessionRepository.AddSession(userId);
         }

@@ -54,7 +54,7 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public Guid LoginUser(string email, string password)
+        public string LoginUser(string email, string password)
         {
             var user = UserManager.LoginUser(email, password);
             return SessionManager.AddSession(user.UserId);

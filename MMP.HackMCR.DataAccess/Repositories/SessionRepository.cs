@@ -10,7 +10,7 @@ namespace MMP.HackMCR.DataAccess.Repositories
 {
     public static class SessionRepository
     {
-        public static Guid AddSession(int userId)
+        public static string AddSession(int userId)
         {
             var parameters = new List<SqlParameter>
             {
@@ -19,7 +19,7 @@ namespace MMP.HackMCR.DataAccess.Repositories
                 new SqlParameter("@LastUpdated", DateTime.UtcNow)
             };
 
-            return (Guid)DataHelper.PopulateObject("sp_AddSession", parameters);
+            return DataHelper.PopulateObject("sp_AddSession", parameters).ToString();
         }
 
         public static int ValidateSession(Guid guid)
