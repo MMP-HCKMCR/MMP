@@ -56,7 +56,22 @@ function createSoapQuery(funcName, parameters) {
 
     if (parameters != null) {
         for (var key in parameters) {
-            query += '<' + key + '>' + parameters[key] + '</' + key + '>';
+            if (typeof(parameters[key]) != 'object') {
+                query += '<' + key + '>' + parameters[key] + '</' + key + '>';
+            }
+            else {
+                query += '<' + key + '>';
+
+                for (var i = 0; i < parameters[key].length; i++) {
+                    switch (typeof (parameters[key][i])) {
+                        case 'number':
+                            query += '<int>' + parameters[key][i] + '</int>';
+                            break;
+                    }
+                }
+
+                query += '</' + key + '>';
+            }
         }
     }
 

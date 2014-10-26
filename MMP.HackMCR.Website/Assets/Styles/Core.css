@@ -41,6 +41,11 @@
     margin: 0;
 }
 
+.mLeft30
+{
+    margin-left: 30px;
+}
+
 .w300p
 {
     width: 300px !important;

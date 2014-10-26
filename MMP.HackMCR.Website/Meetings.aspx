@@ -44,6 +44,10 @@
                     <td>
                         <input type="date" id="MeetingStartDate" class="w131p" />
                         <input type="time" id="MeetingStartTime" class="w131p" />
+                        
+                        <label for="MeetingEndDate" class="mLeft30">End Date:</label>
+                        <input type="date" id="MeetingEndDate" class="w131p" />
+                        <input type="time" id="MeetingEndTime" class="w131p" />
                     </td>
                 </tr>
                 <tr>
