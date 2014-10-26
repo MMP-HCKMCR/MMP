@@ -9,10 +9,7 @@
     <div id="UserGroupsPanel" class="mAll20">
         <div id="UsersContainer" class="box-container pAll10">
             <h4>Users</h4>
-            <div>
-                <input type="checkbox" />
-                <label>Test</label>
-            </div>
+            <div id="UserChecklist"></div>
         </div>
         <div id="GroupsContainer" class="box-container pAll10 mTop20">
             <h4>Groups</h4>

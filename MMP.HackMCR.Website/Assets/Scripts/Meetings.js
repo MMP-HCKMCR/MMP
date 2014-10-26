@@ -12,8 +12,16 @@ function populate() {
         type: 'POST',
         data: allUsersQuery,
         contentType: 'text/xml; charset=utf-8',
-        success: function (data) {
-            console.log(data);
+        success: function (data, status, req) {
+            var names = $(req.responseXML).find('GetAllUsersResult').find('User').find('Name');
+            
+            for (var key in names) {
+                if (names[key].innerHTML == null) {
+                    continue;
+                }
+
+                $('#UserChecklist').append('<div><input type="checkbox" /><label>' + names[key].innerHTML + '</label></div>');
+            }
         },
         error: function (x, y, z) {
             console.log(z);
