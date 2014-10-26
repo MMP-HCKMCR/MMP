@@ -60,5 +60,8 @@ namespace MMP.HackMCR.DataContract
 
         [DataMember]
         public Entries Entries { set; get; }
+
+        public DateTime StarTime { set; get; }
+        public DateTime EndTime { set; get; }
     }
 }

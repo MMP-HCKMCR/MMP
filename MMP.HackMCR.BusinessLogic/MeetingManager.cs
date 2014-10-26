@@ -112,16 +112,7 @@ namespace MMP.HackMCR.BusinessLogic
             List<HourDetails> starts = hourDetails.OrderBy(s => s.StartTime).ToList();
             List<HourDetails> ends = hourDetails.OrderBy(s => s.EndTime).ToList();
 
-            int index = 0;
-
-            if (starts.Count%2 != 0)
-            {
-                index = ((starts.Count - 1)/2) + 1;
-            }
-            else
-            {
-                
-            }
+            //var starts.Average(s => s.StartTime.Ticks);
 
         }
     }

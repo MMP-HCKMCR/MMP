@@ -43,6 +43,7 @@
     <Compile Include="GroupManager.cs" />
     <Compile Include="LogManager.cs" />
     <Compile Include="MeetingManager.cs" />
+    <Compile Include="Object\HourDetails.cs" />
     <Compile Include="SessionManager.cs" />
     <Compile Include="UserGroupManager.cs" />
     <Compile Include="UserManager.cs" />

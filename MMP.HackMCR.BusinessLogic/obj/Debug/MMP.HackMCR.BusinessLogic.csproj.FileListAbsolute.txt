@@ -7,3 +7,5 @@ C:\GitHub\MMP\MMP.HackMCR.BusinessLogic\bin\Debug\MMP.HackMCR.DataContract.pdb
 C:\GitHub\MMP\MMP.HackMCR.BusinessLogic\obj\Debug\MMP.HackMCR.BusinessLogic.csprojResolveAssemblyReference.cache
 C:\GitHub\MMP\MMP.HackMCR.BusinessLogic\obj\Debug\MMP.HackMCR.BusinessLogic.dll
 C:\GitHub\MMP\MMP.HackMCR.BusinessLogic\obj\Debug\MMP.HackMCR.BusinessLogic.pdb
+C:\GitHub\MMP\MMP.HackMCR.BusinessLogic\bin\Debug\MMP.HackMCR.OneDiaryInterface.dll
+C:\GitHub\MMP\MMP.HackMCR.BusinessLogic\bin\Debug\MMP.HackMCR.OneDiaryInterface.pdb
