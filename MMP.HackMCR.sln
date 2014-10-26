@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.WebService", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.BusinessLogic", "MMP.HackMCR.BusinessLogic\MMP.HackMCR.BusinessLogic.csproj", "{218A73EB-D4A7-4400-BFB0-1E2E81125172}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.OneDiaryInterface", "MMP.HackMCR.OneDiaryInterface\MMP.HackMCR.OneDiaryInterface.csproj", "{45B7C47F-6BD3-4032-ADDF-211D191A0670}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{218A73EB-D4A7-4400-BFB0-1E2E81125172}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{218A73EB-D4A7-4400-BFB0-1E2E81125172}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{218A73EB-D4A7-4400-BFB0-1E2E81125172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B7C47F-6BD3-4032-ADDF-211D191A0670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B7C47F-6BD3-4032-ADDF-211D191A0670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B7C47F-6BD3-4032-ADDF-211D191A0670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B7C47F-6BD3-4032-ADDF-211D191A0670}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

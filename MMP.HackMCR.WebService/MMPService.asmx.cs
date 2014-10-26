@@ -237,5 +237,11 @@ namespace MMP.HackMCR.WebService
             };
         }
         #endregion
+
+        [WebMethod]
+        public void TestAPI()
+        {
+            OneDiaryInterface.Inferface.GetCalanderEntries();
+        }
     }
 }

@@ -1,0 +1,5 @@
+C:\GitHub\MMP\MMP.HackMCR.OneDiaryInterface\bin\Debug\MMP.HackMCR.OneDiaryInterface.dll
+C:\GitHub\MMP\MMP.HackMCR.OneDiaryInterface\bin\Debug\MMP.HackMCR.OneDiaryInterface.pdb
+C:\GitHub\MMP\MMP.HackMCR.OneDiaryInterface\obj\Debug\MMP.HackMCR.OneDiaryInterface.csprojResolveAssemblyReference.cache
+C:\GitHub\MMP\MMP.HackMCR.OneDiaryInterface\obj\Debug\MMP.HackMCR.OneDiaryInterface.dll
+C:\GitHub\MMP\MMP.HackMCR.OneDiaryInterface\obj\Debug\MMP.HackMCR.OneDiaryInterface.pdb

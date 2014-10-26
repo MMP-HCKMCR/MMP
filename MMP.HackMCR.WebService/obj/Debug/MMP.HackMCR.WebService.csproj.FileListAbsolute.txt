@@ -10,3 +10,5 @@ C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.BusinessLogic.dll
 C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.DataAccess.dll
 C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.BusinessLogic.pdb
 C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.DataAccess.pdb
+C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.OneDiaryInterface.dll
+C:\GitHub\MMP\MMP.HackMCR.WebService\bin\MMP.HackMCR.OneDiaryInterface.pdb
