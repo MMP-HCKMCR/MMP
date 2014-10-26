@@ -22,17 +22,22 @@ namespace MMP.HackMCR.BusinessLogic
 
         public static List<EventType> GetAllEventTypes()
         {
-            return new List<EventType>();
+            return MapEventTypes(EventTypeRepository.GetAllEventTypes());
         }
 
         public static void RemoveEventType(int eventTypeId)
         {
-            
+            EventTypeRepository.RemoveEventType(eventTypeId);
         }
 
         public static EventType UpdateEventType(int eventTypeId, string eventTypeName)
         {
-            return new EventType();
+            return MapEventType(EventTypeRepository.UpdateEventType(eventTypeId, eventTypeName));
+        }
+
+        public static List<EventType> MapEventTypes(List<DataAccess.Objects.EventType> eventTypes)
+        {
+            return eventTypes.Select(MapEventType).ToList();
         }
 
         private static EventType MapEventType(DataAccess.Objects.EventType eventType)

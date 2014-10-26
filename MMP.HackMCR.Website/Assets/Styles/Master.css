@@ -4,6 +4,7 @@
     background-color: white;
     color: black;
     overflow-x: hidden;
+    margin: 0;
 }
 
 a
@@ -130,4 +131,18 @@ input[type=submit]:hover
 .center-data
 {
     margin: 0 auto;
+}
+
+#UserGroupsPanel
+{
+    float: left;
+    width: 15%;
+    display: inline-block;
+}
+
+#DetailsPanel
+{
+    float: right;
+    width: 79%;
+    display: inline-block;
 }

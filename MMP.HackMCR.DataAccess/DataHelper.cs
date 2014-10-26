@@ -33,5 +33,25 @@ namespace MMP.HackMCR.DataAccess
 
             return table;
         }
+
+        public static object PopulateObject(string storedProcName, List<SqlParameter> parameters)
+        {
+            var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["MMPDatabase"].ToString());
+            var command = new SqlCommand(storedProcName, connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            if (parameters != null)
+            {
+                command.Parameters.AddRange(parameters.ToArray());
+            }
+
+            connection.Open();
+            var obj = command.ExecuteScalar();
+            connection.Close();
+
+            return obj;
+        }
     }
 }

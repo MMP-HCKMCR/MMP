@@ -1,4 +1,36 @@
 ﻿
+.hidden
+{
+    display: none;
+}
+
+.overlay-dialog
+{
+    z-index: 9999;
+    width: 40%;
+    background-color: white;
+    border: solid 1px black;
+    box-shadow: 1px 1px 2px #888888;
+    margin: 0 auto;
+    position: fixed;
+    top: 250px;
+    left: 400px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+}
+
+.overlay
+{
+    background-color: black;
+    top: -1000px;
+    bottom: -1000px;
+    left: -1000px;
+    right: -1000px;
+    position: absolute;
+    opacity: 0.7;
+}
+
 .mAll20
 {
     margin: 20px;
@@ -12,4 +44,14 @@
 .w131p
 {
     width: 131px !important;
+}
+
+.pAll10
+{
+    padding: 10px;
+}
+
+.mTop20
+{
+    margin-top: 20px !important;
 }

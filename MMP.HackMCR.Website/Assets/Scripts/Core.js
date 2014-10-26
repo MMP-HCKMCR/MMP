@@ -1,4 +1,6 @@
 ﻿
+var openSoapBody = '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>';
+var closeSoapBody = '</soap:Body></soap:Envelope>';
 var errors = 0;
 
 function hasErrors() {
@@ -46,4 +48,23 @@ function setErrorMessage(selector, message) {
 
 function clearErrorMessage(selector) {
     $(selector).text('');
+}
+
+function createSoapQuery(funcName, parameters) {
+    var query = openSoapBody;
+    query += '<' + funcName + ' xmlns="http://tempuri.org/">';
+
+    if (parameters != null) {
+        for (var key in parameters) {
+            query += '<' + key + '>' + parameters[key] + '</' + key + '>';
+        }
+    }
+
+    query += '</' + funcName + '>';
+    query += closeSoapBody;
+    return query;
+}
+
+function redirect(location) {
+    window.location.href = location;
 }

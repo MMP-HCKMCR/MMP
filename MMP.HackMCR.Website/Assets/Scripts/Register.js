@@ -23,24 +23,28 @@ function bindEvents() {
             return;
         }
 
-        var query = 'name=' + $('#FullName').val()
-                  + '&userName=' + $('#UserDomain').val() + "/" + $('#Username').val()
-                  + '&token=' + $('#OneDiaryToken').val()
-                  + '&mobileNumber=' + $('#MobileNumber').val()
-                  + '&password' + $('#Password').val()
-                  + '&emailAddress' + $('#Email').val();
+        var query = createSoapQuery(
+            'AddUser',
+            {
+                name: $('#FullName').val(),
+                userName: $('#UserDomain').val() + "/" + $('#Username').val(),
+                token: $('#OneDiaryToken').val(),
+                mobileNumber: $('#MobileNumber').val(),
+                password: $('#Password').val(),
+                emailAddress: $('#Email').val()
+            });
 
         $.ajax({
-            url: 'http://hackmsrweb.cloudapp.net/MMPWebService.asmx/AddUser',
-            type: 'GET',
+            url: 'http://hackmsrweb.cloudapp.net/WebService/MMPService.asmx',
+            type: 'POST',
             data: query,
-            dataType: 'xml',
+            contentType: 'text/xml; charset=utf-8',
             success: function (data) {
-                //direct to home page
-                setErrorMessage('#GeneralError', 'SUCCESS!');
+                $('.overlay').show();
+                $('#RegisterSuccess').show();
             },
             error: function(x, y, z) {
-                setErrorMessage('#GeneralError', x + '\n' + y + '\n' + z);
+                setErrorMessage('#GeneralError', z);
             }
         });
     });

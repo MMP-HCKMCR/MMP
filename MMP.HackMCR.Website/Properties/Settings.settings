@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="MMP_HackMCR_Website_MMPWebService_MMPService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://hackmsrweb.cloudapp.net:81/MMPService.asmx</Value>
+      <Value Profile="(Default)">http://hackmsrweb.cloudapp.net/WebService/MMPService.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

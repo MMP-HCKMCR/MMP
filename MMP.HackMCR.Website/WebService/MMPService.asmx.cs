@@ -85,9 +85,10 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public User LoginUser(string email, string password)
+        public Guid LoginUser(string email, string password)
         {
-            return UserManager.LoginUser(email, password);
+            var user = UserManager.LoginUser(email, password);
+            return SessionManager.AddSession(user.UserId);
         }
         #endregion
 
@@ -260,6 +261,12 @@ namespace MMP.HackMCR.Website.WebService
             groupIds.Add(groupId);
 
             MeetingManager.FindMeetingTimes(userIds.ToArray(), groupIds.ToArray(), realStartDate, realEndDate);
+        }
+
+        [WebMethod]
+        public int ValidateSession(Guid guid)
+        {
+            return SessionManager.ValidateSession(guid);
         }
     }
 }
