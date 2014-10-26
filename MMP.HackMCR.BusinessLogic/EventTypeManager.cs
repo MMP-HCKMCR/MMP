@@ -17,7 +17,12 @@ namespace MMP.HackMCR.BusinessLogic
 
         public static EventType GetEventType(int eventTypeId)
         {
-            return new EventType();
+            return MapEventType(EventTypeRepository.GetEventType(eventTypeId));
+        }
+
+        public static List<EventType> GetAllEventTypes()
+        {
+            return new List<EventType>();
         }
 
         public static void RemoveEventType(int eventTypeId)

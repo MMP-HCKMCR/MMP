@@ -19,6 +19,11 @@ namespace MMP.HackMCR.DataAccess.Repositories
             return PopulateEventTypeFromDataTable(DataHelper.PopulateTable("sp_AddEventType", parameters));
         }
 
+        public static EventType GetEventType(int eventTypeId)
+        {
+            return new EventType();
+        }
+
         private static EventType PopulateEventTypeFromDataTable(DataTable dataTable)
         {
             return dataTable.Rows.Count > 0 ? PopulateEventTypeFromDataRow(dataTable.Rows[0]) : null;

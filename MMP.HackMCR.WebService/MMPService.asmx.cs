@@ -180,24 +180,13 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public List<EventType> GetAllEventTypes()
         {
-            return new List<EventType>
-            {
-                new EventType
-                {
-                    EventTypeId = 1,
-                    EventTypeName= "Event Type"
-                }
-            };
+            return EventTypeManager.GetAllEventTypes();
         }
 
         [WebMethod]
         public EventType GetEventTypeById(int eventTypeId)
         {
-            return new EventType
-            {
-                EventTypeId = 1,
-                EventTypeName = "Event Type Name"
-            };
+            return EventTypeManager.GetEventType(eventTypeId);
         }
 
         [WebMethod]
