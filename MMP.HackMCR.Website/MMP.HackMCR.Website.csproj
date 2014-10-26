@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\favicon.ico" />
     <Content Include="Assets\Scripts\Core.js" />
     <Content Include="Assets\Scripts\jquery-2.1.1.min.js" />
     <Content Include="Assets\Scripts\Login.js" />
@@ -148,9 +149,7 @@
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>

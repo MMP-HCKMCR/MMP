@@ -8,19 +8,63 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentBody" runat="server">
     <div id="UserGroupsPanel" class="mAll20">
         <div id="UsersContainer" class="box-container pAll10">
-            <h4>Users</h4>
+            <h4 class="mAll0">Users</h4>
             <div id="UserChecklist"></div>
         </div>
+
         <div id="GroupsContainer" class="box-container pAll10 mTop20">
-            <h4>Groups</h4>
+            <h4 class="mAll0">Groups</h4>
             <div id="GroupChecklist"></div>
         </div>
     </div>
 
     <div id="DetailsPanel" class="mAll20">
         <div id="DetailsContainer" class="box-container pAll10">
-            Dummy
+            <table>
+                <tr>
+                    <td>
+                        <label for="MeetingName">Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="MeetingName" placeholder="Name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="MeetingDescription">Description:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="MeetingDescription" class="w900p" placeholder="Description" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="MeetingStartDate">Start Date:</label>
+                    </td>
+                    <td>
+                        <input type="date" id="MeetingStartDate" class="w131p" />
+                        <input type="time" id="MeetingStartTime" class="w131p" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="MeetingDuration">Duration:</label>
+                    </td>
+                    <td>
+                        <select id="MeetingDuration" class="w60p">
+                            <option value="0">15</option>
+                            <option value="1">30</option>
+                            <option value="2" selected="selected">60</option>
+                            <option value="3">90</option>
+                            <option value="4">120</option>
+                        </select>
+                        <label> minutes</label>
+                        <input type="submit" id="FilterMeetingTimes" class="fright" value="Filter" />
+                    </td>
+                </tr>
+            </table>
         </div>
+
         <div id="TimesContainer" class="box-container pAll10 mTop20">
             Dummy
         </div>

@@ -6,6 +6,7 @@
     
     <head runat="server">
         <title>My Meeting Pal | <%=PageName %></title>
+        <link rel="shortcut icon" href="/Assets/Images/favicon.ico" />
         <link type="text/css" rel="stylesheet" href="./Assets/Styles/Master.css" />
         <link type="text/css" rel="stylesheet" href="./Assets/Styles/Core.css" />
         <script type="text/javascript" src="./Assets/Scripts/jquery-2.1.1.min.js"></script>

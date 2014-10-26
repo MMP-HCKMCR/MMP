@@ -36,14 +36,34 @@
     margin: 20px;
 }
 
+.mAll0
+{
+    margin: 0;
+}
+
 .w300p
 {
     width: 300px !important;
 }
 
+.w600p
+{
+    width: 600px !important;
+}
+
+.w900p
+{
+    width: 900px !important;
+}
+
 .w131p
 {
     width: 131px !important;
+}
+
+.w60p
+{
+    width: 60px !important;
 }
 
 .pAll10
@@ -54,4 +74,9 @@
 .mTop20
 {
     margin-top: 20px !important;
+}
+
+.fright
+{
+    float: right;
 }

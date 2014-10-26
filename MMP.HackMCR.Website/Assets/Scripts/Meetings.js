@@ -14,14 +14,16 @@ function populate() {
         data: allUsersQuery,
         contentType: 'text/xml; charset=utf-8',
         success: function (data, status, req) {
-            var names = $(req.responseXML).find('GetAllUsersResult').find('User').find('Name');
+            var users = $(req.responseXML).find('GetAllUsersResult').find('User');
+            var names = users.find('Name');
+            var userIds = users.find('UserId');
             
             for (var key in names) {
                 if (names[key].innerHTML == null) {
                     continue;
                 }
 
-                $('#UserChecklist').append('<div><input type="checkbox" /><label>' + names[key].innerHTML + '</label></div>');
+                $('#UserChecklist').append('<div><input type="checkbox" /><label data-userId="' + userIds[key].innerHTML + '">' + names[key].innerHTML + '</label></div>');
             }
         },
         error: function (x, y, z) {
@@ -38,14 +40,16 @@ function populate() {
         data: allGroupsQuery,
         contentType: 'text/xml; charset=utf-8',
         success: function (data, status, req) {
-            var names = $(req.responseXML).find('GetAllGroupsResult').find('Group').find('GroupName');
+            var groups = $(req.responseXML).find('GetAllGroupsResult').find('Group');
+            var names = groups.find('GroupName');
+            var groupIds = groups.find('GroupId');
             
             for (var key in names) {
                 if (names[key].innerHTML == null) {
                     continue;
                 }
 
-                $('#GroupChecklist').append('<div><input type="checkbox" /><label>' + names[key].innerHTML + '</label></div>');
+                $('#GroupChecklist').append('<div><input type="checkbox" /><label data-groupId="' + groupIds[key].innerHTML + '">' + names[key].innerHTML + '</label></div>');
             }
         },
         error: function (x, y, z) {
@@ -55,5 +59,7 @@ function populate() {
 }
 
 function bindEvents() {
+    $('input[type=checkbox]').bind('change', function (e) {
 
+    });
 }
