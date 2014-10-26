@@ -174,11 +174,7 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public EventType AddEventType(string eventName)
         {
-            return new EventType
-            {
-                EventTypeId = 1,
-                EventTypeName = eventName
-            };
+            return EventTypeManager.AddEventType(eventName);
         }
 
         [WebMethod]
@@ -217,17 +213,13 @@ namespace MMP.HackMCR.WebService
         [WebMethod]
         public EventType UpdateEventType(int eventTypeId, string eventTypeName)
         {
-            return new EventType
-            {
-                EventTypeId = 1,
-                EventTypeName = "Event Type Name"
-            };
+            return EventTypeManager.UpdateEventType(eventTypeId, eventTypeName);
         }
 
         [WebMethod]
         public void RemoveEventType(int eventTypeId)
         {
-
+            EventTypeManager.RemoveEventType(eventTypeId);
         }
         #endregion                                                                                
 

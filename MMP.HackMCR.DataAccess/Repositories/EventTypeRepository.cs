@@ -7,9 +7,9 @@ using MMP.HackMCR.DataAccess.Objects;
 
 namespace MMP.HackMCR.DataAccess.Repositories
 {
-    public class EventTypeRepository
+    public static class EventTypeRepository
     {
-        public EventType AddEventType(string eventTypeName)
+        public static EventType AddEventType(string eventTypeName)
         {
             var parameters = new List<SqlParameter>
             {
