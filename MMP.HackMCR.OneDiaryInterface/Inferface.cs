@@ -64,14 +64,14 @@ namespace MMP.HackMCR.OneDiaryInterface
             return result;
         }
 
-        public static void AddCalanderEntry(string userToken, string calendarId, string summary, string description, DateTime startDate, DateTime endDate)
+        public static void AddCalanderEntry(string userToken, string calendarId, string summary, string description, string startDate, string endDate)
         {
             var entry = new Entry
             {
                 summary = summary,
                 description = description,
-                start = startDate.ToString(),
-                end = endDate.ToString(),
+                start = startDate,
+                end = endDate,
                 calendar_id = UserCalanders(userToken)
             };
 

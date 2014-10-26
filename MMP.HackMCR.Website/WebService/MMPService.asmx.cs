@@ -190,7 +190,7 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public void CreateMeeting(int[] userIds, string summary, string description, DateTime startTime, DateTime endTime)
+        public void CreateMeeting(int[] userIds, string summary, string description, string startTime, string endTime)
         {
             var meetingManager = new MeetingManager();
             meetingManager.CreateMeeting(userIds, summary, description, startTime, endTime);            

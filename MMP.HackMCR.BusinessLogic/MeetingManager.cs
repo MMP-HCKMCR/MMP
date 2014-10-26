@@ -308,7 +308,7 @@ namespace MMP.HackMCR.BusinessLogic
             }
         }
 
-        public void CreateMeeting(int[] userIds, string summary, string description, DateTime startDate, DateTime endDate)
+        public void CreateMeeting(int[] userIds, string summary, string description, string startDate, string endDate)
         {
             foreach (var userId in userIds)
             {
