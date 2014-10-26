@@ -61,7 +61,34 @@ namespace MMP.HackMCR.DataContract
         [DataMember]
         public Entries Entries { set; get; }
 
-        public DateTime StarTime { set; get; }
-        public DateTime EndTime { set; get; }
+        [DataMember]
+        public DateTime SundayStartTime { set; get; }
+        [DataMember]
+        public DateTime MondayStartTime { set; get; }
+        [DataMember]
+        public DateTime TuesdayStartTime { set; get; }
+        [DataMember]
+        public DateTime WednesdayStartTime { set; get; }
+        [DataMember]
+        public DateTime ThursdayStartTime { set; get; }
+        [DataMember]
+        public DateTime FridayStartTime { set; get; }
+        [DataMember]
+        public DateTime SaturdayStartTime { set; get; }
+
+        [DataMember]
+        public DateTime SundayEndTime { set; get; }
+        [DataMember]
+        public DateTime MondayEndTime { set; get; }
+        [DataMember]
+        public DateTime TuesdayEndTime { set; get; }
+        [DataMember]
+        public DateTime WednesdayEndTime { set; get; }
+        [DataMember]
+        public DateTime ThursdayEndTime { set; get; }
+        [DataMember]
+        public DateTime FridayEndTime { set; get; }
+        [DataMember]
+        public DateTime SaturdayEndTime { set; get; }
     }
 }

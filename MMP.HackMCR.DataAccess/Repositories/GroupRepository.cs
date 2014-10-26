@@ -52,7 +52,7 @@ namespace MMP.HackMCR.DataAccess.Repositories
 
         public static List<Group> GetAllGroups()
         {
-            return PopulateGroupsFromDataTable(DataHelper.PopulateTable("sp_GetAllUsersAlphabetically", null));
+            return PopulateGroupsFromDataTable(DataHelper.PopulateTable("sp_GetAllGroupsAlphabetically", null));
         }
 
         public static List<Group> GetGroupsForUserId(int userId)

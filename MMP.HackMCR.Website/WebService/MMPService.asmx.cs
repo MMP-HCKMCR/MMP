@@ -190,7 +190,8 @@ namespace MMP.HackMCR.Website.WebService
             List<int> groupIds = new List<int>();
             groupIds.Add(groupId);
 
-            MeetingManager.FindMeetingTimes(userIds.ToArray(), groupIds.ToArray(), realStartDate, realEndDate);
+            var meetingManager = new MeetingManager();
+            meetingManager.FindMeetingTimes(userIds.ToArray(), groupIds.ToArray(), realStartDate, realEndDate);
         }
 
         [WebMethod]
