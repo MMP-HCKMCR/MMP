@@ -194,7 +194,7 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public int ValidateSession(Guid guid)
+        public int ValidateSession(string guid)
         {
             return SessionManager.ValidateSession(guid);
         }

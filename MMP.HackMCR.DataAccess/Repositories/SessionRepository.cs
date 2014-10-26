@@ -22,20 +22,16 @@ namespace MMP.HackMCR.DataAccess.Repositories
             return DataHelper.PopulateObject("sp_AddSession", parameters).ToString();
         }
 
-        public static int ValidateSession(Guid guid)
+        public static int ValidateSession(string guid)
         {
             var parameters = new List<SqlParameter>
             {
                 new SqlParameter("@GUID", guid)
             };
 
-            int userId;
-            bool result;
-            if((result = Int32.TryParse(DataHelper.PopulateObject("sp_ValidateSession", parameters).ToString(), out userId)))
-            {
-                return userId;
-            }
-            return 0;
+            var result = DataHelper.PopulateObject("sp_ValidateSession", parameters);
+
+            return  result == null ? 0 : (int)result;          
         }
     }
 }
