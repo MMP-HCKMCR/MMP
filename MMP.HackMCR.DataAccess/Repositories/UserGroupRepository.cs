@@ -16,5 +16,16 @@ namespace MMP.HackMCR.DataAccess.Repositories
 
             DataHelper.PopulateTable("sp_AddUserGroup", parameters);
         }
+
+        public static void RemoveUserFromGroup(int userId, int groupId)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@UserId", userId),
+                new SqlParameter("@GroupId", groupId)
+            };
+
+            DataHelper.PopulateTable("sp_RemoveUserGroup", parameters);
+        }
     }
 }

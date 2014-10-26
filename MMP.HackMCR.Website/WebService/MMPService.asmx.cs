@@ -24,17 +24,9 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public User AddUserToGroup(int userId, int groupId)
+        public void AddUserToGroup(int userId, int groupId)
         {
-            return new User
-            {
-                UserId = userId,
-                UserName = "User Name",
-                Token = "Token",
-                Name = "Name",
-                MobileNumber = "Mobile Number",
-                Groups = new List<Group>()
-            };
+            UserGroupManager.AddUserGroup(userId, groupId); 
         }
 
         [WebMethod]
@@ -50,38 +42,15 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public User GetUserByName(string userName)
-        {
-            return new User
-            {
-                UserId = 1,
-                UserName = userName,
-                Token = "Token",
-                Name = "Name",
-                MobileNumber = "Mobile Number",
-                Groups = new List<Group>()
-            };
-        }
-
-        [WebMethod]
         public User UpdateUser(int userId, string userName, string name, string token, string mobileNumber, string password, string emailAddress)
         {
-            return new User
-            {
-                UserId = 1,
-                UserName = "User Name",
-                Token = "Token",
-                Name = "Name",
-                Email = "email address",
-                MobileNumber = "Mobile Number",
-                Groups = new List<Group>()
-            };
+            return UserManager.UpdateUser(userId, name, userName, password, token, mobileNumber, emailAddress);
         }
 
         [WebMethod]
         public void RemoveUserDetails(int userId)
         {
-
+            UserManager.RemoveUser(userId);
         }
 
         [WebMethod]
@@ -112,45 +81,15 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public Group GetGroupByName(string GroupName)
-        {
-            return new Group
-            {
-                GroupId = 1,
-                GroupName = GroupName,
-                Users = new List<User>()
-            };
-        }
-
-        [WebMethod]
         public List<Group> GetAllGroupsForUser(int userId)
         {
-            return new List<Group>
-            {
-                new Group
-                {
-                    GroupId = 1,
-                    GroupName = "Group Name",
-                    Users = new List<User>()
-                }
-            };
+            return GroupManager.GetGroupsForUser(userId);
         }
 
         [WebMethod]
         public List<User> GetAllUsersForGroup(int groupId)
         {
-            return new List<User>
-            {
-                new User
-                {
-                    UserId = 1,
-                    UserName = "User Name",
-                    Name = "Name",
-                    Token = "Token",
-                    MobileNumber = "Mobile Number",
-                    Groups = new List<Group>()
-                }
-            };
+            return UserManager.GetUsersForGroupId(groupId);
         }
 
         [WebMethod]
@@ -166,14 +105,9 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public Group RemoveUserFromGroup(int userId, int groupId)
+        public void RemoveUserFromGroup(int userId, int groupId)
         {
-            return new Group
-            {
-                GroupId = 1,
-                GroupName = "Group Name",
-                Users = new List<User>()
-            };
+            UserGroupManager.RemoveUserGroup(userId, groupId);
         }
         #endregion
 
@@ -194,16 +128,6 @@ namespace MMP.HackMCR.Website.WebService
         public EventType GetEventTypeById(int eventTypeId)
         {
             return EventTypeManager.GetEventType(eventTypeId);
-        }
-
-        [WebMethod]
-        public EventType GetEventTypeByName(string eventTypeName)
-        {
-            return new EventType
-            {
-                EventTypeId = 1,
-                EventTypeName = "Event Type Name"
-            };
         }
 
         [WebMethod]
