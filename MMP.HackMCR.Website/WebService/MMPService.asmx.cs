@@ -250,5 +250,11 @@ namespace MMP.HackMCR.Website.WebService
         {
             MeetingManager.FindMeetingTimes(userIds, groupIds, startDate, endDate);
         }
+
+        [WebMethod]
+        public int ValidateSession(Guid guid)
+        {
+            return SessionManager.ValidateSession(guid);
+        }
     }
 }

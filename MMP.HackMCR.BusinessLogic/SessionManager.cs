@@ -13,5 +13,10 @@ namespace MMP.HackMCR.BusinessLogic
         {
             return SessionRepository.AddSession(userId);
         }
+
+        public static int ValidateSession(Guid guid)
+        {
+            return SessionRepository.ValidateSession(guid);
+        }
     }
 }
