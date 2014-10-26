@@ -67,27 +67,38 @@ namespace MMP.HackMCR.OneDiaryInterface
         public static void AddCalanderEntry(string userToken, string summary, string description, string startDate, string endDate)
         {
             string calendarId = UserCalanders(userToken);
+
+            var eventId = Guid.NewGuid().ToString();
+            eventId = eventId.Replace("-", "");
+   
             var entry = new Entry
             {
+                calendar_id = calendarId,
+                event_id = eventId,
                 summary = summary,
                 description = description,
                 start = startDate,
-                end = endDate,
-                calendar_id = calendarId
+                end = endDate
             };
 
             var url = new StringBuilder("https://api.onediary.com/v1/calendars/");
             url.Append(calendarId);
             url.Append("/events");
 
-            var webRequest = WebRequest.Create(url.ToString());
+            var webRequest = (HttpWebRequest)WebRequest.Create(url.ToString());
+            webRequest.ProtocolVersion = HttpVersion.Version10;
+            webRequest.Method = "POST";
             webRequest.Headers.Add("Authorization", string.Format("Bearer {0}", userToken));
+            webRequest.ContentType = "application/json; charset=UTF-8";
+            webRequest.Accept = "application/json";
 
             entry.calendar_id = calendarId;
 
-            var stream1 = new MemoryStream();
+            var stream1 = webRequest.GetRequestStream();
             var serializer = new DataContractJsonSerializer(typeof (Entry));
             serializer.WriteObject(stream1, entry);
+
+            webRequest.GetResponse();
         }
 
         public static void RemoveCalanderEntry(string userToken, List<User> users, int eventId)

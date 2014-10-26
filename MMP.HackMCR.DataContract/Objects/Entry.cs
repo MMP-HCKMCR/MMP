@@ -5,6 +5,8 @@ namespace MMP.HackMCR.DataContract.Objects
     public class Entry
     {
         public string calendar_id { set; get; }
+
+        public string event_id { set; get; }
         public string event_uid { set; get; }
         public string summary { set; get; }
         public string description { set; get; }
