@@ -132,3 +132,17 @@ input[type=submit]:hover
 {
     margin: 0 auto;
 }
+
+#UserGroupsPanel
+{
+    float: left;
+    width: 15%;
+    display: inline-block;
+}
+
+#DetailsPanel
+{
+    float: right;
+    width: 79%;
+    display: inline-block;
+}

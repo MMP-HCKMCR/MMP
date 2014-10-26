@@ -59,6 +59,8 @@
   <ItemGroup>
     <Content Include="Assets\Scripts\Core.js" />
     <Content Include="Assets\Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Assets\Scripts\Login.js" />
+    <Content Include="Assets\Scripts\Meetings.js" />
     <Content Include="Assets\Scripts\Register.js" />
     <Content Include="Assets\Styles\Core.css" />
     <Content Include="Assets\Styles\Master.css" />

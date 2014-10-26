@@ -54,8 +54,10 @@ function createSoapQuery(funcName, parameters) {
     var query = openSoapBody;
     query += '<' + funcName + ' xmlns="http://tempuri.org/">';
 
-    for (var key in parameters) {
-        query += '<' + key + '>' + parameters[key] + '</' + key + '>';
+    if (parameters != null) {
+        for (var key in parameters) {
+            query += '<' + key + '>' + parameters[key] + '</' + key + '>';
+        }
     }
 
     query += '</' + funcName + '>';

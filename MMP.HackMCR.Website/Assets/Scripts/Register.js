@@ -42,7 +42,6 @@ function bindEvents() {
             success: function (data) {
                 $('.overlay').show();
                 $('#RegisterSuccess').show();
-                //redirect('Default.aspx');
             },
             error: function(x, y, z) {
                 setErrorMessage('#GeneralError', z);
