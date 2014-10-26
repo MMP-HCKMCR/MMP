@@ -308,14 +308,15 @@ namespace MMP.HackMCR.BusinessLogic
             }
         }
 
-        public void CreateMeeting(string userToken, List<User> users, Entry entry)
+        public void CreateMeeting(int[] userIds, string summary, string description, DateTime startDate, DateTime endDate)
         {
-            OneDiaryInterface.Inferface.AddCalanderEntry(userToken, users, entry);
-        }
+            foreach (var userId in userIds)
+            {
+                var user = UserManager.GetUser(userId);
 
-        public void CancelMeeting(string userToken, List<User> users, int eventId)
-        {
-            OneDiaryInterface.Inferface.RemoveCalanderEntry(userToken, users, eventId);
+                OneDiaryInterface.Inferface.AddCalanderEntry(user.Token, user.Entries.events[0].calendar_id, summary, description, startDate, endDate);
+            }
+            
         }
     }
 }

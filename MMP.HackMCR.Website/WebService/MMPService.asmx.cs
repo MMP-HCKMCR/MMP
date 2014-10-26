@@ -190,9 +190,10 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
-        public void CreateMeeting(string userToken, List<User> users, Entry entry)
+        public void CreateMeeting(int[] userIds, string summary, string description, DateTime startTime, DateTime endTime)
         {
-            OneDiaryInterface.Inferface.AddCalanderEntry(userToken, users, entry);
+            var meetingManager = new MeetingManager();
+            meetingManager.CreateMeeting(userIds, summary, description, startTime, endTime);            
         }
 
         [WebMethod]

@@ -36,23 +36,29 @@ namespace MMP.HackMCR.OneDiaryInterface
             return entries;
         }
 
-        public static void AddCalanderEntry(string userToken, List<User> users, Entry entry)
+        public static void AddCalanderEntry(string userToken, string calendarId, string summary, string description, DateTime startDate, DateTime endDate)
         {
-            foreach(User user in users)
+            var entry = new Entry
             {
-                var url = new StringBuilder("https://api.onediary.com/v1/calendars/");
-                url.Append(user.Entries.events[0].calendar_id);
-                url.Append("/events");
+                summary = summary,
+                description = description,
+                start = startDate.ToString(),
+                end = endDate.ToString(),
+                calendar_id = calendarId
+            };
 
-                var webRequest = WebRequest.Create(url.ToString());
-                webRequest.Headers.Add("Authorization", string.Format("Bearer {0}", userToken));
+            var url = new StringBuilder("https://api.onediary.com/v1/calendars/");
+            url.Append(calendarId);
+            url.Append("/events");
 
-                entry.calendar_id = user.Entries.events[0].calendar_id;
+            var webRequest = WebRequest.Create(url.ToString());
+            webRequest.Headers.Add("Authorization", string.Format("Bearer {0}", userToken));
 
-                MemoryStream stream1 = new MemoryStream();
-                var serializer = new DataContractJsonSerializer(typeof(Entry));
-                serializer.WriteObject(stream1, entry);
-            }
+            entry.calendar_id = calendarId;
+
+            var stream1 = new MemoryStream();
+            var serializer = new DataContractJsonSerializer(typeof (Entry));
+            serializer.WriteObject(stream1, entry);
         }
 
         public static void RemoveCalanderEntry(string userToken, List<User> users, int eventId)
