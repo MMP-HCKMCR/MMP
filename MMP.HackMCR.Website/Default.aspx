@@ -2,6 +2,7 @@
 <%@ MasterType VirtualPath="~/Layout.Master" %>
 
 <asp:Content ID="ContentHead" ContentPlaceHolderID="ContentHead" runat="server">
+    <script type="text/javascript" src="./Assets/Scripts/Login.js"></script>
 </asp:Content>
 
 <asp:Content ID="ContentBody" ContentPlaceHolderID="ContentBody" runat="server">

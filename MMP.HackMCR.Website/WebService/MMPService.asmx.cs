@@ -57,6 +57,12 @@ namespace MMP.HackMCR.Website.WebService
         public string LoginUser(string email, string password)
         {
             var user = UserManager.LoginUser(email, password);
+
+            if (user == default(User))
+            {
+                return string.Empty;
+            }
+
             return SessionManager.AddSession(user.UserId);
         }
         #endregion

@@ -13,7 +13,7 @@
         </div>
         <div id="GroupsContainer" class="box-container pAll10 mTop20">
             <h4>Groups</h4>
-            Dummy
+            <div id="GroupChecklist"></div>
         </div>
     </div>
 

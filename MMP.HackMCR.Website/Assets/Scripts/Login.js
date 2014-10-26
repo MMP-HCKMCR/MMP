@@ -28,9 +28,11 @@ function bindEvents() {
             type: 'POST',
             data: query,
             contentType: 'text/xml; charset=utf-8',
-            success: function (data) {
-                if (data.guid != '') {
-                    redirect('Meetings.aspx?Guid=' + data.guid);
+            success: function (data, status, req) {
+                var guid = $(req.responseXML).find('LoginUserResult').find('stringValue')['0'].innerHTML;
+
+                if (guid != '') {
+                    redirect('Meetings.aspx?Guid=' + guid);
                 }
                 else {
                     setErrorMessage('#GeneralError', 'Login failed');
