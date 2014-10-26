@@ -10,25 +10,140 @@ namespace MMP.HackMCR.BusinessLogic
     public class MeetingManager
     {
         private List<User> _usersToProcess = new List<User>();
+        private List<MeetingTime> _meetingTimes = new List<MeetingTime>();
 
-        public void FindMeetingTimes(int[] userIds, int[] groupIds, int duration, DateTime startDate, DateTime endDate)
+        public List<MeetingTime> FindMeetingTimes(int[] userIds, int[] groupIds, int duration, DateTime startDate, DateTime endDate)
         {
+            if (startDate.ToShortDateString() == DateTime.Now.ToShortDateString())
+            {
+                startDate = DateTime.Now.AddMinutes(30);
+            }
+
+            PopulateMeetingTimes(startDate,endDate, duration);
+
             PopulateUsersToProcess(userIds, startDate, endDate);
             PopulateUsersFromGroups(groupIds, startDate, endDate);
 
-            CheckUsersHaveAvailbleMeetingTimeInCalander(duration);
+            CheckUsersHaveAvailbleMeetingTimeInCalander();
 
             ProcessMeetingDays();
+
+            SelectAvailableMeetingDates();
+
+            return _meetingTimes;
         }
 
-        private void CheckUsersHaveAvailbleMeetingTimeInCalander(int duration)
+        private void PopulateMeetingTimes(DateTime startDate, DateTime endDate, int duration)
         {
-            
+            while (startDate.AddMinutes(duration) < endDate)
+            {
+                _meetingTimes.Add(new MeetingTime
+                {
+                    StartTime = startDate,
+                    EndTime = startDate.AddMinutes(duration)
+                });
+
+                startDate = startDate.AddMinutes(duration);
+            }
+        }
+
+        private void CheckUsersHaveAvailbleMeetingTimeInCalander()
+        {
+            foreach (var user in _usersToProcess)
+            {
+                var availableTimes = new List<MeetingTime>();
+
+                foreach (var meetingTime in _meetingTimes)
+                {
+                    bool available = true;
+
+                    foreach (var entry in user.Entries.events)
+                    {
+                        if ((meetingTime.StartTime >= entry.StartTime && meetingTime.StartTime <= entry.EndTime) ||
+                            (meetingTime.EndTime >= entry.StartTime && meetingTime.EndTime <= entry.EndTime))
+                        {
+                            available = false;
+                        }
+                    }
+
+                    if (available)
+                    {
+                        availableTimes.Add(meetingTime);
+                    }
+                }
+
+                _meetingTimes = availableTimes;
+            }
         }
 
         private void SelectAvailableMeetingDates()
         {
-            
+            foreach (var user in _usersToProcess)
+            {
+                var availableTimes = new List<MeetingTime>();
+
+                foreach (var meetingTime in _meetingTimes)
+                {
+                    bool available = true;
+
+                    DateTime userStartTime = DateTime.Now;
+                    DateTime userEndTime = DateTime.Now;
+
+                    switch (meetingTime.StartTime.DayOfWeek)
+                    {
+                        case DayOfWeek.Sunday:
+                            userStartTime = user.SundayStartTime;
+                            userEndTime = user.SundayEndTime;
+                            break;
+                        case DayOfWeek.Monday:
+                            userStartTime = user.MondayStartTime;
+                            userEndTime = user.MondayEndTime;
+                            break;
+                        case DayOfWeek.Tuesday:
+                            userStartTime = user.TuesdayStartTime;
+                            userEndTime = user.TuesdayEndTime;
+                            break;
+                        case DayOfWeek.Wednesday:
+                            userStartTime = user.WednesdayStartTime;
+                            userEndTime = user.WednesdayEndTime;
+                            break;
+                        case DayOfWeek.Thursday:
+                            userStartTime = user.ThursdayStartTime;
+                            userEndTime = user.ThursdayEndTime;
+                            break;
+                        case DayOfWeek.Friday:
+                            userStartTime = user.FridayStartTime;
+                            userEndTime = user.FridayEndTime;
+                            break;
+                        case DayOfWeek.Saturday:
+                            userStartTime = user.SaturdayStartTime;
+                            userEndTime = user.SaturdayEndTime;
+                            break;
+                    }
+
+                    var meetingStartTime = new DateTime(1970, 1, 1, meetingTime.StartTime.Hour,
+                        meetingTime.StartTime.Minute, meetingTime.StartTime.Second);
+                    var meetingEndTime = new DateTime(1970, 1, 1, meetingTime.EndTime.Hour,
+                        meetingTime.EndTime.Minute, meetingTime.EndTime.Second);
+
+                    if (meetingStartTime < userStartTime || meetingStartTime > userEndTime)
+                    {
+                        available = false;
+                    }
+
+                    if (meetingEndTime < userStartTime || meetingEndTime > userEndTime)
+                    {
+                        available = false;
+                    }
+
+                    if (available)
+                    {
+                        availableTimes.Add(meetingTime);
+                    }
+                }
+
+                _meetingTimes = availableTimes;   
+            }
         }
 
         private void PopulateUsersToProcess(int[] userIds, DateTime startDate, DateTime endDate)
