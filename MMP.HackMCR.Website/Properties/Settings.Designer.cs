@@ -26,7 +26,7 @@ namespace MMP.HackMCR.Website.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://hackmsrweb.cloudapp.net:81/MMPService.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://hackmsrweb.cloudapp.net/WebService/MMPService.asmx")]
         public string MMP_HackMCR_Website_MMPWebService_MMPService {
             get {
                 return ((string)(this["MMP_HackMCR_Website_MMPWebService_MMPService"]));

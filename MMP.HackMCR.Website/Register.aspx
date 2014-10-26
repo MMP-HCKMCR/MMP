@@ -76,4 +76,10 @@
         </table>
     </div>
 
+    <div class="overlay hidden"></div>
+    <div id="RegisterSuccess" class="overlay-dialog hidden">
+        <h1>Account Created</h1>
+        <input type="submit" value="Continue" id="ContinueButton" onclick="redirect('Default.aspx');" />
+    </div>
+
 </asp:Content>

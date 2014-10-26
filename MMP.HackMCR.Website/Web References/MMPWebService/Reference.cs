@@ -73,6 +73,12 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         private System.Threading.SendOrPostCallback RemoveEventTypeOperationCompleted;
         
+        private System.Threading.SendOrPostCallback AddUserEventByEventTypeNameOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AddUserEventByEventTypeIdOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback TestAPIOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -176,6 +182,15 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         /// <remarks/>
         public event RemoveEventTypeCompletedEventHandler RemoveEventTypeCompleted;
+        
+        /// <remarks/>
+        public event AddUserEventByEventTypeNameCompletedEventHandler AddUserEventByEventTypeNameCompleted;
+        
+        /// <remarks/>
+        public event AddUserEventByEventTypeIdCompletedEventHandler AddUserEventByEventTypeIdCompleted;
+        
+        /// <remarks/>
+        public event TestAPICompletedEventHandler TestAPICompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -837,6 +852,94 @@ namespace MMP.HackMCR.Website.MMPWebService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUserEventByEventTypeName", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Event AddUserEventByEventTypeName(string userName, string eventTypeName) {
+            object[] results = this.Invoke("AddUserEventByEventTypeName", new object[] {
+                        userName,
+                        eventTypeName});
+            return ((Event)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddUserEventByEventTypeNameAsync(string userName, string eventTypeName) {
+            this.AddUserEventByEventTypeNameAsync(userName, eventTypeName, null);
+        }
+        
+        /// <remarks/>
+        public void AddUserEventByEventTypeNameAsync(string userName, string eventTypeName, object userState) {
+            if ((this.AddUserEventByEventTypeNameOperationCompleted == null)) {
+                this.AddUserEventByEventTypeNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddUserEventByEventTypeNameOperationCompleted);
+            }
+            this.InvokeAsync("AddUserEventByEventTypeName", new object[] {
+                        userName,
+                        eventTypeName}, this.AddUserEventByEventTypeNameOperationCompleted, userState);
+        }
+        
+        private void OnAddUserEventByEventTypeNameOperationCompleted(object arg) {
+            if ((this.AddUserEventByEventTypeNameCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddUserEventByEventTypeNameCompleted(this, new AddUserEventByEventTypeNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUserEventByEventTypeId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Event AddUserEventByEventTypeId(string userName, int eventTypeId) {
+            object[] results = this.Invoke("AddUserEventByEventTypeId", new object[] {
+                        userName,
+                        eventTypeId});
+            return ((Event)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AddUserEventByEventTypeIdAsync(string userName, int eventTypeId) {
+            this.AddUserEventByEventTypeIdAsync(userName, eventTypeId, null);
+        }
+        
+        /// <remarks/>
+        public void AddUserEventByEventTypeIdAsync(string userName, int eventTypeId, object userState) {
+            if ((this.AddUserEventByEventTypeIdOperationCompleted == null)) {
+                this.AddUserEventByEventTypeIdOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAddUserEventByEventTypeIdOperationCompleted);
+            }
+            this.InvokeAsync("AddUserEventByEventTypeId", new object[] {
+                        userName,
+                        eventTypeId}, this.AddUserEventByEventTypeIdOperationCompleted, userState);
+        }
+        
+        private void OnAddUserEventByEventTypeIdOperationCompleted(object arg) {
+            if ((this.AddUserEventByEventTypeIdCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AddUserEventByEventTypeIdCompleted(this, new AddUserEventByEventTypeIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/TestAPI", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void TestAPI() {
+            this.Invoke("TestAPI", new object[0]);
+        }
+        
+        /// <remarks/>
+        public void TestAPIAsync() {
+            this.TestAPIAsync(null);
+        }
+        
+        /// <remarks/>
+        public void TestAPIAsync(object userState) {
+            if ((this.TestAPIOperationCompleted == null)) {
+                this.TestAPIOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTestAPIOperationCompleted);
+            }
+            this.InvokeAsync("TestAPI", new object[0], this.TestAPIOperationCompleted, userState);
+        }
+        
+        private void OnTestAPIOperationCompleted(object arg) {
+            if ((this.TestAPICompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.TestAPICompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -989,6 +1092,63 @@ namespace MMP.HackMCR.Website.MMPWebService {
             }
             set {
                 this.usersField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Event {
+        
+        private int eventIdField;
+        
+        private User userField;
+        
+        private EventType eventTypeField;
+        
+        private System.DateTime eventTimeField;
+        
+        /// <remarks/>
+        public int EventId {
+            get {
+                return this.eventIdField;
+            }
+            set {
+                this.eventIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public User User {
+            get {
+                return this.userField;
+            }
+            set {
+                this.userField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public EventType EventType {
+            get {
+                return this.eventTypeField;
+            }
+            set {
+                this.eventTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime EventTime {
+            get {
+                return this.eventTimeField;
+            }
+            set {
+                this.eventTimeField = value;
             }
         }
     }
@@ -1531,6 +1691,62 @@ namespace MMP.HackMCR.Website.MMPWebService {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
     public delegate void RemoveEventTypeCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void AddUserEventByEventTypeNameCompletedEventHandler(object sender, AddUserEventByEventTypeNameCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddUserEventByEventTypeNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddUserEventByEventTypeNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Event Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Event)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void AddUserEventByEventTypeIdCompletedEventHandler(object sender, AddUserEventByEventTypeIdCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AddUserEventByEventTypeIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AddUserEventByEventTypeIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public Event Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((Event)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void TestAPICompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591
