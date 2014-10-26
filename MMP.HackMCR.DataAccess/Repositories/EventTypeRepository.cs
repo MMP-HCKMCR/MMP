@@ -21,7 +21,38 @@ namespace MMP.HackMCR.DataAccess.Repositories
 
         public static EventType GetEventType(int eventTypeId)
         {
-            return new EventType();
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@EventTypeId", eventTypeId)
+            };
+
+            return PopulateEventTypeFromDataTable(DataHelper.PopulateTable("sp_GetEventTypeForEventTypeId", parameters));
+        }
+
+        public static List<EventType> GetAllEventTypes()
+        {
+            return PopulateEventTypesFromDataTable(DataHelper.PopulateTable("sp_GetAllEventTypesAlphabetically", null));
+        }
+
+        public static EventType UpdateEventType(int eventTypeId, string eventTypeName)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@EventTypeId", eventTypeId),
+                new SqlParameter("@EventTypeName", eventTypeName)
+            };
+
+            return PopulateEventTypeFromDataTable(DataHelper.PopulateTable("sp_UpdateUserDetails", parameters));
+        }
+
+        public static void RemoveEventType(int eventTypeId)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@EventTypeId", eventTypeId)
+            };
+
+            DataHelper.PopulateTable("sp_RemoveEventType", parameters);
         }
 
         private static EventType PopulateEventTypeFromDataTable(DataTable dataTable)
