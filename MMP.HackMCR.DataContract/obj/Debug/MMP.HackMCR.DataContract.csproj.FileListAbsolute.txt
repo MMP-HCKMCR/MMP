@@ -7,4 +7,3 @@ C:\GitHub\MMP\MMP.HackMCR.DataContract\bin\Debug\MMP.HackMCR.DataContract.dll
 C:\GitHub\MMP\MMP.HackMCR.DataContract\bin\Debug\MMP.HackMCR.DataContract.pdb
 C:\GitHub\MMP\MMP.HackMCR.DataContract\obj\Debug\MMP.HackMCR.DataContract.dll
 C:\GitHub\MMP\MMP.HackMCR.DataContract\obj\Debug\MMP.HackMCR.DataContract.pdb
-C:\GitHub\MMP\MMP.HackMCR.DataContract\obj\Debug\MMP.HackMCR.DataContract.csprojResolveAssemblyReference.cache

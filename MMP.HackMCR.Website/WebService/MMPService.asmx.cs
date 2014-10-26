@@ -190,6 +190,18 @@ namespace MMP.HackMCR.Website.WebService
         }
 
         [WebMethod]
+        public void CreateMeeting(string userToken, List<User> users, Entry entry)
+        {
+            OneDiaryInterface.Inferface.AddCalanderEntry(userToken, users, entry);
+        }
+
+        [WebMethod]
+        public void CancelMeeting(string userToken, List<User> users, int eventId)
+        {
+            OneDiaryInterface.Inferface.RemoveCalanderEntry(userToken, users, eventId);
+        }
+
+        [WebMethod]
         public int ValidateSession(string guid)
         {
             return SessionManager.ValidateSession(guid);
