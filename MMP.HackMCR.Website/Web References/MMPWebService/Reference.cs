@@ -37,19 +37,17 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         private System.Threading.SendOrPostCallback GetAllUsersOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetUserByNameOperationCompleted;
-        
         private System.Threading.SendOrPostCallback UpdateUserOperationCompleted;
         
         private System.Threading.SendOrPostCallback RemoveUserDetailsOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback LoginUserOperationCompleted;
         
         private System.Threading.SendOrPostCallback AddGroupOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetAllGroupsOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetGroupByIdOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback GetGroupByNameOperationCompleted;
         
         private System.Threading.SendOrPostCallback GetAllGroupsForUserOperationCompleted;
         
@@ -67,8 +65,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         private System.Threading.SendOrPostCallback GetEventTypeByIdOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetEventTypeByNameOperationCompleted;
-        
         private System.Threading.SendOrPostCallback UpdateEventTypeOperationCompleted;
         
         private System.Threading.SendOrPostCallback RemoveEventTypeOperationCompleted;
@@ -77,7 +73,9 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         private System.Threading.SendOrPostCallback AddUserEventByEventTypeIdOperationCompleted;
         
-        private System.Threading.SendOrPostCallback TestAPIOperationCompleted;
+        private System.Threading.SendOrPostCallback FindMeetingTimesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ValidateSessionOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -130,13 +128,13 @@ namespace MMP.HackMCR.Website.MMPWebService {
         public event GetAllUsersCompletedEventHandler GetAllUsersCompleted;
         
         /// <remarks/>
-        public event GetUserByNameCompletedEventHandler GetUserByNameCompleted;
-        
-        /// <remarks/>
         public event UpdateUserCompletedEventHandler UpdateUserCompleted;
         
         /// <remarks/>
         public event RemoveUserDetailsCompletedEventHandler RemoveUserDetailsCompleted;
+        
+        /// <remarks/>
+        public event LoginUserCompletedEventHandler LoginUserCompleted;
         
         /// <remarks/>
         public event AddGroupCompletedEventHandler AddGroupCompleted;
@@ -146,9 +144,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         /// <remarks/>
         public event GetGroupByIdCompletedEventHandler GetGroupByIdCompleted;
-        
-        /// <remarks/>
-        public event GetGroupByNameCompletedEventHandler GetGroupByNameCompleted;
         
         /// <remarks/>
         public event GetAllGroupsForUserCompletedEventHandler GetAllGroupsForUserCompleted;
@@ -175,9 +170,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
         public event GetEventTypeByIdCompletedEventHandler GetEventTypeByIdCompleted;
         
         /// <remarks/>
-        public event GetEventTypeByNameCompletedEventHandler GetEventTypeByNameCompleted;
-        
-        /// <remarks/>
         public event UpdateEventTypeCompletedEventHandler UpdateEventTypeCompleted;
         
         /// <remarks/>
@@ -190,7 +182,10 @@ namespace MMP.HackMCR.Website.MMPWebService {
         public event AddUserEventByEventTypeIdCompletedEventHandler AddUserEventByEventTypeIdCompleted;
         
         /// <remarks/>
-        public event TestAPICompletedEventHandler TestAPICompleted;
+        public event FindMeetingTimesCompletedEventHandler FindMeetingTimesCompleted;
+        
+        /// <remarks/>
+        public event ValidateSessionCompletedEventHandler ValidateSessionCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -233,11 +228,10 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddUserToGroup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public User AddUserToGroup(int userId, int groupId) {
-            object[] results = this.Invoke("AddUserToGroup", new object[] {
+        public void AddUserToGroup(int userId, int groupId) {
+            this.Invoke("AddUserToGroup", new object[] {
                         userId,
                         groupId});
-            return ((User)(results[0]));
         }
         
         /// <remarks/>
@@ -258,7 +252,7 @@ namespace MMP.HackMCR.Website.MMPWebService {
         private void OnAddUserToGroupOperationCompleted(object arg) {
             if ((this.AddUserToGroupCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.AddUserToGroupCompleted(this, new AddUserToGroupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.AddUserToGroupCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -315,35 +309,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
             if ((this.GetAllUsersCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetAllUsersCompleted(this, new GetAllUsersCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetUserByName", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public User GetUserByName(string userName) {
-            object[] results = this.Invoke("GetUserByName", new object[] {
-                        userName});
-            return ((User)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetUserByNameAsync(string userName) {
-            this.GetUserByNameAsync(userName, null);
-        }
-        
-        /// <remarks/>
-        public void GetUserByNameAsync(string userName, object userState) {
-            if ((this.GetUserByNameOperationCompleted == null)) {
-                this.GetUserByNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetUserByNameOperationCompleted);
-            }
-            this.InvokeAsync("GetUserByName", new object[] {
-                        userName}, this.GetUserByNameOperationCompleted, userState);
-        }
-        
-        private void OnGetUserByNameOperationCompleted(object arg) {
-            if ((this.GetUserByNameCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetUserByNameCompleted(this, new GetUserByNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -413,6 +378,37 @@ namespace MMP.HackMCR.Website.MMPWebService {
             if ((this.RemoveUserDetailsCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.RemoveUserDetailsCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/LoginUser", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string LoginUser(string email, string password) {
+            object[] results = this.Invoke("LoginUser", new object[] {
+                        email,
+                        password});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void LoginUserAsync(string email, string password) {
+            this.LoginUserAsync(email, password, null);
+        }
+        
+        /// <remarks/>
+        public void LoginUserAsync(string email, string password, object userState) {
+            if ((this.LoginUserOperationCompleted == null)) {
+                this.LoginUserOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLoginUserOperationCompleted);
+            }
+            this.InvokeAsync("LoginUser", new object[] {
+                        email,
+                        password}, this.LoginUserOperationCompleted, userState);
+        }
+        
+        private void OnLoginUserOperationCompleted(object arg) {
+            if ((this.LoginUserCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LoginUserCompleted(this, new LoginUserCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -498,35 +494,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
             if ((this.GetGroupByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetGroupByIdCompleted(this, new GetGroupByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetGroupByName", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Group GetGroupByName(string GroupName) {
-            object[] results = this.Invoke("GetGroupByName", new object[] {
-                        GroupName});
-            return ((Group)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetGroupByNameAsync(string GroupName) {
-            this.GetGroupByNameAsync(GroupName, null);
-        }
-        
-        /// <remarks/>
-        public void GetGroupByNameAsync(string GroupName, object userState) {
-            if ((this.GetGroupByNameOperationCompleted == null)) {
-                this.GetGroupByNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetGroupByNameOperationCompleted);
-            }
-            this.InvokeAsync("GetGroupByName", new object[] {
-                        GroupName}, this.GetGroupByNameOperationCompleted, userState);
-        }
-        
-        private void OnGetGroupByNameOperationCompleted(object arg) {
-            if ((this.GetGroupByNameCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetGroupByNameCompleted(this, new GetGroupByNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -649,11 +616,10 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/RemoveUserFromGroup", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Group RemoveUserFromGroup(int userId, int groupId) {
-            object[] results = this.Invoke("RemoveUserFromGroup", new object[] {
+        public void RemoveUserFromGroup(int userId, int groupId) {
+            this.Invoke("RemoveUserFromGroup", new object[] {
                         userId,
                         groupId});
-            return ((Group)(results[0]));
         }
         
         /// <remarks/>
@@ -674,7 +640,7 @@ namespace MMP.HackMCR.Website.MMPWebService {
         private void OnRemoveUserFromGroupOperationCompleted(object arg) {
             if ((this.RemoveUserFromGroupCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.RemoveUserFromGroupCompleted(this, new RemoveUserFromGroupCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.RemoveUserFromGroupCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -760,35 +726,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
             if ((this.GetEventTypeByIdCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetEventTypeByIdCompleted(this, new GetEventTypeByIdCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetEventTypeByName", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public EventType GetEventTypeByName(string eventTypeName) {
-            object[] results = this.Invoke("GetEventTypeByName", new object[] {
-                        eventTypeName});
-            return ((EventType)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetEventTypeByNameAsync(string eventTypeName) {
-            this.GetEventTypeByNameAsync(eventTypeName, null);
-        }
-        
-        /// <remarks/>
-        public void GetEventTypeByNameAsync(string eventTypeName, object userState) {
-            if ((this.GetEventTypeByNameOperationCompleted == null)) {
-                this.GetEventTypeByNameOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetEventTypeByNameOperationCompleted);
-            }
-            this.InvokeAsync("GetEventTypeByName", new object[] {
-                        eventTypeName}, this.GetEventTypeByNameOperationCompleted, userState);
-        }
-        
-        private void OnGetEventTypeByNameOperationCompleted(object arg) {
-            if ((this.GetEventTypeByNameCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetEventTypeByNameCompleted(this, new GetEventTypeByNameCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -914,28 +851,65 @@ namespace MMP.HackMCR.Website.MMPWebService {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/TestAPI", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void TestAPI() {
-            this.Invoke("TestAPI", new object[0]);
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/FindMeetingTimes", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void FindMeetingTimes(int userId, int groupId, string startDate, string endDate) {
+            this.Invoke("FindMeetingTimes", new object[] {
+                        userId,
+                        groupId,
+                        startDate,
+                        endDate});
         }
         
         /// <remarks/>
-        public void TestAPIAsync() {
-            this.TestAPIAsync(null);
+        public void FindMeetingTimesAsync(int userId, int groupId, string startDate, string endDate) {
+            this.FindMeetingTimesAsync(userId, groupId, startDate, endDate, null);
         }
         
         /// <remarks/>
-        public void TestAPIAsync(object userState) {
-            if ((this.TestAPIOperationCompleted == null)) {
-                this.TestAPIOperationCompleted = new System.Threading.SendOrPostCallback(this.OnTestAPIOperationCompleted);
+        public void FindMeetingTimesAsync(int userId, int groupId, string startDate, string endDate, object userState) {
+            if ((this.FindMeetingTimesOperationCompleted == null)) {
+                this.FindMeetingTimesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnFindMeetingTimesOperationCompleted);
             }
-            this.InvokeAsync("TestAPI", new object[0], this.TestAPIOperationCompleted, userState);
+            this.InvokeAsync("FindMeetingTimes", new object[] {
+                        userId,
+                        groupId,
+                        startDate,
+                        endDate}, this.FindMeetingTimesOperationCompleted, userState);
         }
         
-        private void OnTestAPIOperationCompleted(object arg) {
-            if ((this.TestAPICompleted != null)) {
+        private void OnFindMeetingTimesOperationCompleted(object arg) {
+            if ((this.FindMeetingTimesCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.TestAPICompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.FindMeetingTimesCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidateSession", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public int ValidateSession(string guid) {
+            object[] results = this.Invoke("ValidateSession", new object[] {
+                        guid});
+            return ((int)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValidateSessionAsync(string guid) {
+            this.ValidateSessionAsync(guid, null);
+        }
+        
+        /// <remarks/>
+        public void ValidateSessionAsync(string guid, object userState) {
+            if ((this.ValidateSessionOperationCompleted == null)) {
+                this.ValidateSessionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidateSessionOperationCompleted);
+            }
+            this.InvokeAsync("ValidateSession", new object[] {
+                        guid}, this.ValidateSessionOperationCompleted, userState);
+        }
+        
+        private void OnValidateSessionOperationCompleted(object arg) {
+            if ((this.ValidateSessionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValidateSessionCompleted(this, new ValidateSessionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -979,6 +953,12 @@ namespace MMP.HackMCR.Website.MMPWebService {
         private string mobileNumberField;
         
         private string emailField;
+        
+        private Entries entriesField;
+        
+        private System.DateTime starTimeField;
+        
+        private System.DateTime endTimeField;
         
         /// <remarks/>
         public int UserId {
@@ -1049,6 +1029,36 @@ namespace MMP.HackMCR.Website.MMPWebService {
                 this.emailField = value;
             }
         }
+        
+        /// <remarks/>
+        public Entries Entries {
+            get {
+                return this.entriesField;
+            }
+            set {
+                this.entriesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime StarTime {
+            get {
+                return this.starTimeField;
+            }
+            set {
+                this.starTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime EndTime {
+            get {
+                return this.endTimeField;
+            }
+            set {
+                this.endTimeField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -1112,6 +1122,8 @@ namespace MMP.HackMCR.Website.MMPWebService {
         
         private System.DateTime eventTimeField;
         
+        private bool userActiveField;
+        
         /// <remarks/>
         public int EventId {
             get {
@@ -1151,6 +1163,16 @@ namespace MMP.HackMCR.Website.MMPWebService {
                 this.eventTimeField = value;
             }
         }
+        
+        /// <remarks/>
+        public bool UserActive {
+            get {
+                return this.userActiveField;
+            }
+            set {
+                this.userActiveField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -1187,6 +1209,108 @@ namespace MMP.HackMCR.Website.MMPWebService {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Entry {
+        
+        private string calendar_idField;
+        
+        private string event_uidField;
+        
+        private string summaryField;
+        
+        private string descriptionField;
+        
+        private string startField;
+        
+        private string endField;
+        
+        /// <remarks/>
+        public string calendar_id {
+            get {
+                return this.calendar_idField;
+            }
+            set {
+                this.calendar_idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string event_uid {
+            get {
+                return this.event_uidField;
+            }
+            set {
+                this.event_uidField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string summary {
+            get {
+                return this.summaryField;
+            }
+            set {
+                this.summaryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string start {
+            get {
+                return this.startField;
+            }
+            set {
+                this.startField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string end {
+            get {
+                return this.endField;
+            }
+            set {
+                this.endField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.34230")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Entries {
+        
+        private Entry[] eventsField;
+        
+        /// <remarks/>
+        public Entry[] events {
+            get {
+                return this.eventsField;
+            }
+            set {
+                this.eventsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
     public delegate void AddUserCompletedEventHandler(object sender, AddUserCompletedEventArgs e);
     
@@ -1214,29 +1338,7 @@ namespace MMP.HackMCR.Website.MMPWebService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void AddUserToGroupCompletedEventHandler(object sender, AddUserToGroupCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AddUserToGroupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal AddUserToGroupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public User Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((User)(this.results[0]));
-            }
-        }
-    }
+    public delegate void AddUserToGroupCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
@@ -1292,32 +1394,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void GetUserByNameCompletedEventHandler(object sender, GetUserByNameCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetUserByNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetUserByNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public User Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((User)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
     public delegate void UpdateUserCompletedEventHandler(object sender, UpdateUserCompletedEventArgs e);
     
     /// <remarks/>
@@ -1345,6 +1421,32 @@ namespace MMP.HackMCR.Website.MMPWebService {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
     public delegate void RemoveUserDetailsCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void LoginUserCompletedEventHandler(object sender, LoginUserCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class LoginUserCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal LoginUserCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
@@ -1411,32 +1513,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
         private object[] results;
         
         internal GetGroupByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Group Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Group)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void GetGroupByNameCompletedEventHandler(object sender, GetGroupByNameCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetGroupByNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetGroupByNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1534,29 +1610,7 @@ namespace MMP.HackMCR.Website.MMPWebService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void RemoveUserFromGroupCompletedEventHandler(object sender, RemoveUserFromGroupCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class RemoveUserFromGroupCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal RemoveUserFromGroupCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public Group Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((Group)(this.results[0]));
-            }
-        }
-    }
+    public delegate void RemoveUserFromGroupCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
@@ -1623,32 +1677,6 @@ namespace MMP.HackMCR.Website.MMPWebService {
         private object[] results;
         
         internal GetEventTypeByIdCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
-        }
-        
-        /// <remarks/>
-        public EventType Result {
-            get {
-                this.RaiseExceptionIfNecessary();
-                return ((EventType)(this.results[0]));
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void GetEventTypeByNameCompletedEventHandler(object sender, GetEventTypeByNameCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetEventTypeByNameCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
-        
-        private object[] results;
-        
-        internal GetEventTypeByNameCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
@@ -1746,7 +1774,33 @@ namespace MMP.HackMCR.Website.MMPWebService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
-    public delegate void TestAPICompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    public delegate void FindMeetingTimesCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    public delegate void ValidateSessionCompletedEventHandler(object sender, ValidateSessionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.33440")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValidateSessionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValidateSessionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public int Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((int)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

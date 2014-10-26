@@ -30,6 +30,9 @@
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="MobileNumber" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Entries" type="tns:Entries" />
+          <s:element minOccurs="1" maxOccurs="1" name="StarTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="EndTime" type="s:dateTime" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfGroup">
@@ -49,6 +52,26 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="Entries">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="events" type="tns:ArrayOfEntry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Entry" nillable="true" type="tns:Entry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Entry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="calendar_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="event_uid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="summary" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="start" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="end" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AddUserToGroup">
         <s:complexType>
           <s:sequence>
@@ -58,11 +81,7 @@
         </s:complexType>
       </s:element>
       <s:element name="AddUserToGroupResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="AddUserToGroupResult" type="tns:User" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="GetUserById">
         <s:complexType>
@@ -85,20 +104,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetAllUsersResult" type="tns:ArrayOfUser" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetUserByName">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetUserByNameResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetUserByNameResult" type="tns:User" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -131,6 +136,21 @@
       </s:element>
       <s:element name="RemoveUserDetailsResponse">
         <s:complexType />
+      </s:element>
+      <s:element name="LoginUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="AddGroup">
         <s:complexType>
@@ -167,20 +187,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetGroupByIdResult" type="tns:Group" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetGroupByName">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GroupName" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetGroupByNameResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetGroupByNameResult" type="tns:Group" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -246,11 +252,7 @@
         </s:complexType>
       </s:element>
       <s:element name="RemoveUserFromGroupResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="RemoveUserFromGroupResult" type="tns:Group" />
-          </s:sequence>
-        </s:complexType>
+        <s:complexType />
       </s:element>
       <s:element name="AddEventType">
         <s:complexType>
@@ -301,20 +303,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetEventTypeByName">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="eventTypeName" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetEventTypeByNameResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetEventTypeByNameResult" type="tns:EventType" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="UpdateEventType">
         <s:complexType>
           <s:sequence>
@@ -361,6 +349,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="User" type="tns:User" />
           <s:element minOccurs="0" maxOccurs="1" name="EventType" type="tns:EventType" />
           <s:element minOccurs="1" maxOccurs="1" name="EventTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserActive" type="s:boolean" />
         </s:sequence>
       </s:complexType>
       <s:element name="AddUserEventByEventTypeId">
@@ -378,11 +367,32 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="TestAPI">
+      <s:element name="FindMeetingTimes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="groupId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FindMeetingTimesResponse">
         <s:complexType />
       </s:element>
-      <s:element name="TestAPIResponse">
-        <s:complexType />
+      <s:element name="ValidateSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateSessionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
     </s:schema>
   </wsdl:types>
@@ -410,12 +420,6 @@
   <wsdl:message name="GetAllUsersSoapOut">
     <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
   </wsdl:message>
-  <wsdl:message name="GetUserByNameSoapIn">
-    <wsdl:part name="parameters" element="tns:GetUserByName" />
-  </wsdl:message>
-  <wsdl:message name="GetUserByNameSoapOut">
-    <wsdl:part name="parameters" element="tns:GetUserByNameResponse" />
-  </wsdl:message>
   <wsdl:message name="UpdateUserSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateUser" />
   </wsdl:message>
@@ -427,6 +431,12 @@
   </wsdl:message>
   <wsdl:message name="RemoveUserDetailsSoapOut">
     <wsdl:part name="parameters" element="tns:RemoveUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginUserSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginUser" />
+  </wsdl:message>
+  <wsdl:message name="LoginUserSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginUserResponse" />
   </wsdl:message>
   <wsdl:message name="AddGroupSoapIn">
     <wsdl:part name="parameters" element="tns:AddGroup" />
@@ -445,12 +455,6 @@
   </wsdl:message>
   <wsdl:message name="GetGroupByIdSoapOut">
     <wsdl:part name="parameters" element="tns:GetGroupByIdResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetGroupByNameSoapIn">
-    <wsdl:part name="parameters" element="tns:GetGroupByName" />
-  </wsdl:message>
-  <wsdl:message name="GetGroupByNameSoapOut">
-    <wsdl:part name="parameters" element="tns:GetGroupByNameResponse" />
   </wsdl:message>
   <wsdl:message name="GetAllGroupsForUserSoapIn">
     <wsdl:part name="parameters" element="tns:GetAllGroupsForUser" />
@@ -500,12 +504,6 @@
   <wsdl:message name="GetEventTypeByIdSoapOut">
     <wsdl:part name="parameters" element="tns:GetEventTypeByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="GetEventTypeByNameSoapIn">
-    <wsdl:part name="parameters" element="tns:GetEventTypeByName" />
-  </wsdl:message>
-  <wsdl:message name="GetEventTypeByNameSoapOut">
-    <wsdl:part name="parameters" element="tns:GetEventTypeByNameResponse" />
-  </wsdl:message>
   <wsdl:message name="UpdateEventTypeSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateEventType" />
   </wsdl:message>
@@ -530,11 +528,17 @@
   <wsdl:message name="AddUserEventByEventTypeIdSoapOut">
     <wsdl:part name="parameters" element="tns:AddUserEventByEventTypeIdResponse" />
   </wsdl:message>
-  <wsdl:message name="TestAPISoapIn">
-    <wsdl:part name="parameters" element="tns:TestAPI" />
+  <wsdl:message name="FindMeetingTimesSoapIn">
+    <wsdl:part name="parameters" element="tns:FindMeetingTimes" />
   </wsdl:message>
-  <wsdl:message name="TestAPISoapOut">
-    <wsdl:part name="parameters" element="tns:TestAPIResponse" />
+  <wsdl:message name="FindMeetingTimesSoapOut">
+    <wsdl:part name="parameters" element="tns:FindMeetingTimesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateSessionSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateSession" />
+  </wsdl:message>
+  <wsdl:message name="ValidateSessionSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateSessionResponse" />
   </wsdl:message>
   <wsdl:portType name="MMPServiceSoap">
     <wsdl:operation name="AddUser">
@@ -553,10 +557,6 @@
       <wsdl:input message="tns:GetAllUsersSoapIn" />
       <wsdl:output message="tns:GetAllUsersSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetUserByName">
-      <wsdl:input message="tns:GetUserByNameSoapIn" />
-      <wsdl:output message="tns:GetUserByNameSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <wsdl:input message="tns:UpdateUserSoapIn" />
       <wsdl:output message="tns:UpdateUserSoapOut" />
@@ -564,6 +564,10 @@
     <wsdl:operation name="RemoveUserDetails">
       <wsdl:input message="tns:RemoveUserDetailsSoapIn" />
       <wsdl:output message="tns:RemoveUserDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <wsdl:input message="tns:LoginUserSoapIn" />
+      <wsdl:output message="tns:LoginUserSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AddGroup">
       <wsdl:input message="tns:AddGroupSoapIn" />
@@ -576,10 +580,6 @@
     <wsdl:operation name="GetGroupById">
       <wsdl:input message="tns:GetGroupByIdSoapIn" />
       <wsdl:output message="tns:GetGroupByIdSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetGroupByName">
-      <wsdl:input message="tns:GetGroupByNameSoapIn" />
-      <wsdl:output message="tns:GetGroupByNameSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetAllGroupsForUser">
       <wsdl:input message="tns:GetAllGroupsForUserSoapIn" />
@@ -613,10 +613,6 @@
       <wsdl:input message="tns:GetEventTypeByIdSoapIn" />
       <wsdl:output message="tns:GetEventTypeByIdSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="GetEventTypeByName">
-      <wsdl:input message="tns:GetEventTypeByNameSoapIn" />
-      <wsdl:output message="tns:GetEventTypeByNameSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="UpdateEventType">
       <wsdl:input message="tns:UpdateEventTypeSoapIn" />
       <wsdl:output message="tns:UpdateEventTypeSoapOut" />
@@ -633,9 +629,13 @@
       <wsdl:input message="tns:AddUserEventByEventTypeIdSoapIn" />
       <wsdl:output message="tns:AddUserEventByEventTypeIdSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="TestAPI">
-      <wsdl:input message="tns:TestAPISoapIn" />
-      <wsdl:output message="tns:TestAPISoapOut" />
+    <wsdl:operation name="FindMeetingTimes">
+      <wsdl:input message="tns:FindMeetingTimesSoapIn" />
+      <wsdl:output message="tns:FindMeetingTimesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateSession">
+      <wsdl:input message="tns:ValidateSessionSoapIn" />
+      <wsdl:output message="tns:ValidateSessionSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="MMPServiceSoap" type="tns:MMPServiceSoap">
@@ -676,15 +676,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUserByName">
-      <soap:operation soapAction="http://tempuri.org/GetUserByName" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <soap:operation soapAction="http://tempuri.org/UpdateUser" style="document" />
       <wsdl:input>
@@ -696,6 +687,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveUserDetails">
       <soap:operation soapAction="http://tempuri.org/RemoveUserDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap:operation soapAction="http://tempuri.org/LoginUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -723,15 +723,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetGroupById">
       <soap:operation soapAction="http://tempuri.org/GetGroupById" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetGroupByName">
-      <soap:operation soapAction="http://tempuri.org/GetGroupByName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -811,15 +802,6 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEventTypeByName">
-      <soap:operation soapAction="http://tempuri.org/GetEventTypeByName" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateEventType">
       <soap:operation soapAction="http://tempuri.org/UpdateEventType" style="document" />
       <wsdl:input>
@@ -856,8 +838,17 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TestAPI">
-      <soap:operation soapAction="http://tempuri.org/TestAPI" style="document" />
+    <wsdl:operation name="FindMeetingTimes">
+      <soap:operation soapAction="http://tempuri.org/FindMeetingTimes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateSession">
+      <soap:operation soapAction="http://tempuri.org/ValidateSession" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -904,15 +895,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetUserByName">
-      <soap12:operation soapAction="http://tempuri.org/GetUserByName" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateUser">
       <soap12:operation soapAction="http://tempuri.org/UpdateUser" style="document" />
       <wsdl:input>
@@ -924,6 +906,15 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveUserDetails">
       <soap12:operation soapAction="http://tempuri.org/RemoveUserDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginUser">
+      <soap12:operation soapAction="http://tempuri.org/LoginUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -951,15 +942,6 @@
     </wsdl:operation>
     <wsdl:operation name="GetGroupById">
       <soap12:operation soapAction="http://tempuri.org/GetGroupById" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetGroupByName">
-      <soap12:operation soapAction="http://tempuri.org/GetGroupByName" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1039,15 +1021,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="GetEventTypeByName">
-      <soap12:operation soapAction="http://tempuri.org/GetEventTypeByName" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="UpdateEventType">
       <soap12:operation soapAction="http://tempuri.org/UpdateEventType" style="document" />
       <wsdl:input>
@@ -1084,8 +1057,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="TestAPI">
-      <soap12:operation soapAction="http://tempuri.org/TestAPI" style="document" />
+    <wsdl:operation name="FindMeetingTimes">
+      <soap12:operation soapAction="http://tempuri.org/FindMeetingTimes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateSession">
+      <soap12:operation soapAction="http://tempuri.org/ValidateSession" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

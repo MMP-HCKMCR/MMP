@@ -14,7 +14,7 @@ namespace MMP.HackMCR.DataAccess.Repositories
         {
             var parameters = new List<SqlParameter>
             {
-                new SqlParameter("@GUID", new Guid()),
+                new SqlParameter("@GUID", Guid.NewGuid().ToString()),
                 new SqlParameter("@UserId", userId),
                 new SqlParameter("@LastUpdated", DateTime.UtcNow)
             };

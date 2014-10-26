@@ -29,8 +29,8 @@ function bindEvents() {
             data: query,
             contentType: 'text/xml; charset=utf-8',
             success: function (data, status, req) {
-                var guid = $(req.responseXML).find('LoginUserResult').find('stringValue')['0'].innerHTML;
-
+                var guid = $(req.responseXML).find('LoginUserResult')['0'].innerHTML;
+                
                 if (guid != '') {
                     redirect('Meetings.aspx?Guid=' + guid);
                 }
