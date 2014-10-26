@@ -87,4 +87,10 @@
             <input type="submit" id="CreateMeeting" class="center-data" value="Create Meeting" />
         </div>
     </div>
+
+    <div class="overlay hidden"></div>
+    <div id="MeetingSuccess" class="overlay-dialog hidden">
+        <h1>Meeting Created</h1>
+        <input type="submit" value="OK" id="OKButton" />
+    </div>
 </asp:Content>

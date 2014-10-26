@@ -63,6 +63,11 @@ function bindEvents() {
         createMeeting();
     });
 
+    $('#OKButton').bind('click', function (e) {
+        $('.overlay').hide();
+        $('#MeetingSuccess').hide();
+    });
+
     $('#FilterMeetingTimes').bind('click', function (e) {
         findMeetingTimes();
     });
@@ -116,7 +121,8 @@ function createMeeting() {
         data: query,
         contentType: 'text/xml; charset=utf-8',
         success: function (data, status, req) {
-            console.log('SUCCESS');
+            $('.overlay').show();
+            $('#MeetingSuccess').show();
         },
         error: function (x, y, z) {
             console.log(z);
