@@ -11,12 +11,19 @@ namespace MMP.HackMCR.BusinessLogic
     {
         private List<User> _usersToProcess = new List<User>();
 
-        public void FindMeetingTimes(int[] userIds, int[] groupIds, DateTime startDate, DateTime endDate)
+        public void FindMeetingTimes(int[] userIds, int[] groupIds, int duration, DateTime startDate, DateTime endDate)
         {
             PopulateUsersToProcess(userIds, startDate, endDate);
             PopulateUsersFromGroups(groupIds, startDate, endDate);
 
+            CheckUsersHaveAvailbleMeetingTimeInCalander(duration);
+
             ProcessMeetingDays();
+        }
+
+        private void CheckUsersHaveAvailbleMeetingTimeInCalander(int duration)
+        {
+            
         }
 
         private void SelectAvailableMeetingDates()
