@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMMPServiceContract.cs" />
+    <Compile Include="Objects\Calendar.cs" />
+    <Compile Include="Objects\Calendars.cs" />
     <Compile Include="Objects\MeetingTime.cs" />
     <Compile Include="Objects\Entries.cs" />
     <Compile Include="Objects\Entry.cs" />

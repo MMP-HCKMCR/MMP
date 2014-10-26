@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -36,6 +37,33 @@ namespace MMP.HackMCR.OneDiaryInterface
             return entries;
         }
 
+        public static string UserCalanders(string userToken)
+        {
+            var url = new StringBuilder("https://api.onediary.com/v1/calendars/");
+
+            var webRequest = WebRequest.Create(url.ToString());
+            webRequest.Headers.Add("Authorization", string.Format("Bearer {0}", userToken));
+            var response = webRequest.GetResponse();
+
+            Calendars calendars = null;
+
+            var serializer = new DataContractJsonSerializer(typeof(Calendars));
+
+            if (response.GetResponseStream() != null)
+            {
+                calendars = (Calendars)serializer.ReadObject(response.GetResponseStream());
+            }
+
+            var result = string.Empty;
+
+            if (calendars != null)
+            {
+                result = calendars.calendars[0].calendar_id;
+            }
+
+            return result;
+        }
+
         public static void AddCalanderEntry(string userToken, string calendarId, string summary, string description, DateTime startDate, DateTime endDate)
         {
             var entry = new Entry
@@ -44,7 +72,7 @@ namespace MMP.HackMCR.OneDiaryInterface
                 description = description,
                 start = startDate.ToString(),
                 end = endDate.ToString(),
-                calendar_id = calendarId
+                calendar_id = UserCalanders(userToken)
             };
 
             var url = new StringBuilder("https://api.onediary.com/v1/calendars/");
