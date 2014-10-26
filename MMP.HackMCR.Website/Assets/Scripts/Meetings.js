@@ -73,14 +73,55 @@ function bindEvents() {
 }
 
 function createMeeting() {
+    clearErrors();
+
+    checkEmpty('#MeetingName', '#NameError', 'Please enter a name for the meeting');
+    checkEmpty('#MeetingDescription', '#DescriptionError', 'Please enter a description for the meeting');
+
+    if (hasErrors()) {
+        return;
+    }
+
     var radio = $('input[type=radio]:checked');
 
     if (radio == null || radio.length == 0) {
         return;
     }
 
-    var start = $(radio).parent().find('.start').innerHTML;
-    var end = $(radio).parent().find('.end').innerHTML;
+    var start = $(radio).parent().parent().find('.start').innerHTML;
+    var end = $(radio).parent().parent().find('.end').innerHTML;
+    var name = $('#MeetingName').val();
+    var description = $('#MeetingDescription').val();
+    
+    var users = $('#UserChecklist input[type=checkbox]:checked').parent().find('label');
+    var userIdArray = [];
+
+    $(users).each(function () {
+        userIdArray[userIdArray.length] = parseInt($(this).attr('data-userid'));
+    });
+
+    var query = createSoapQuery(
+        'CreateMeeting',
+        {
+            userIds: userIdArray,
+            summary: name,
+            description: description,
+            startTime: start,
+            endTime: end
+        });
+
+    $.ajax({
+        url: 'http://hackmsrweb.cloudapp.net/WebService/MMPService.asmx',
+        type: 'POST',
+        data: query,
+        contentType: 'text/xml; charset=utf-8',
+        success: function (data, status, req) {
+            console.log('SUCCESS');
+        },
+        error: function (x, y, z) {
+            console.log(z);
+        }
+    });
 }
 
 function findMeetingTimes() {

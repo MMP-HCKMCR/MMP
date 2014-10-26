@@ -27,6 +27,7 @@
                     </td>
                     <td>
                         <input type="text" id="MeetingName" placeholder="Name" />
+                        <span id="NameError" class="error"></span>
                     </td>
                 </tr>
                 <tr>
@@ -35,6 +36,7 @@
                     </td>
                     <td>
                         <input type="text" id="MeetingDescription" class="w900p" placeholder="Description" />
+                        <span id="DescriptionError" class="error"></span>
                     </td>
                 </tr>
                 <tr>
