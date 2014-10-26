@@ -63,11 +63,17 @@ function createSoapQuery(funcName, parameters) {
                 query += '<' + key + '>';
 
                 for (var i = 0; i < parameters[key].length; i++) {
-                    switch (typeof (parameters[key][i])) {
+                    query += parameters[key][i];
+
+                    if (i < parameters[key].length - 1) {
+                        query += ',';
+                    }
+
+                    /*switch (typeof (parameters[key][i])) {
                         case 'number':
                             query += '<int>' + parameters[key][i] + '</int>';
                             break;
-                    }
+                    }*/
                 }
 
                 query += '</' + key + '>';

@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.DataAccess", "MMP.HackMCR.DataAccess\MMP.HackMCR.DataAccess.csproj", "{AF740C79-59A1-4144-9ABA-D2B675E0F5B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.Website", "MMP.HackMCR.Website\MMP.HackMCR.Website.csproj", "{D352D9AB-50C4-4078-8AA2-399C25C7B7FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{45B7C47F-6BD3-4032-ADDF-211D191A0670} = {45B7C47F-6BD3-4032-ADDF-211D191A0670}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMP.HackMCR.BusinessLogic", "MMP.HackMCR.BusinessLogic\MMP.HackMCR.BusinessLogic.csproj", "{218A73EB-D4A7-4400-BFB0-1E2E81125172}"
 EndProject
