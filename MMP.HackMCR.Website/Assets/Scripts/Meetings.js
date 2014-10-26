@@ -59,6 +59,10 @@ function populate() {
 }
 
 function bindEvents() {
+    $('#CreateMeeting').bind('click', function (e) {
+        createMeeting();
+    });
+
     $('#FilterMeetingTimes').bind('click', function (e) {
         findMeetingTimes();
     });
@@ -66,6 +70,17 @@ function bindEvents() {
     $('input[type=checkbox]').bind('change', function (e) {
         findMeetingTimes();
     });
+}
+
+function createMeeting() {
+    var radio = $('input[type=radio]:checked');
+
+    if (radio == null || radio.length == 0) {
+        return;
+    }
+
+    var start = $(radio).parent().find('.start').innerHTML;
+    var end = $(radio).parent().find('.end').innerHTML;
 }
 
 function findMeetingTimes() {
@@ -93,26 +108,32 @@ function findMeetingTimes() {
             endDate: $('#MeetingEndDate').val() + ' ' + $('#MeetingEndTime').val() + ':00.000'
         });
 
-    console.log(query);
-
     $.ajax({
         url: 'http://hackmsrweb.cloudapp.net/WebService/MMPService.asmx',
         type: 'POST',
         data: query,
         contentType: 'text/xml; charset=utf-8',
         success: function (data, status, req) {
-            console.log(req.responseXML);
-            /*var groups = $(req.responseXML).find('GetAllGroupsResult').find('Group');
-            var names = groups.find('GroupName');
-            var groupIds = groups.find('GroupId');
+            var table = $('#MeetingTimes').find('tbody');
+            $(table).innerHTML = '';
 
-            for (var key in names) {
-                if (names[key].innerHTML == null) {
+            var times = $(req.responseXML).find('FindMeetingTimesResult').find('MeetingTime');
+            var starts = times.find('StartTime');
+            var ends = times.find('EndTime');
+
+            var start = null;
+            var end = null;
+
+            for (var key in times) {
+                if (starts[key].innerHTML == null) {
                     continue;
                 }
 
-                $('#GroupChecklist').append('<div><input type="checkbox" /><label data-groupId="' + groupIds[key].innerHTML + '">' + names[key].innerHTML + '</label></div>');
-            }*/
+                start = new Date(starts[key].innerHTML);
+                end = new Date(ends[key].innerHTML);
+
+                $(table).append('<tr><td><input type="radio" /></td><td class="start">' + start.toLocaleDateString() + ' ' + start.toLocaleTimeString() + '</td><td class="end">' + end.toLocaleDateString() + ' ' + end.toLocaleTimeString() + '</td></tr>');
+            }
         },
         error: function (x, y, z) {
             console.log(z);

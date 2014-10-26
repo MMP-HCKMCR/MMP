@@ -43,11 +43,11 @@
                     </td>
                     <td>
                         <input type="date" id="MeetingStartDate" class="w131p" />
-                        <input type="time" id="MeetingStartTime" class="w131p" />
+                        <input type="time" id="MeetingStartTime" class="w131p" value="10:00" />
                         
                         <label for="MeetingEndDate" class="mLeft30">End Date:</label>
                         <input type="date" id="MeetingEndDate" class="w131p" />
-                        <input type="time" id="MeetingEndTime" class="w131p" />
+                        <input type="time" id="MeetingEndTime" class="w131p" value="10:00" />
                     </td>
                 </tr>
                 <tr>
@@ -70,7 +70,19 @@
         </div>
 
         <div id="TimesContainer" class="box-container pAll10 mTop20">
-            Dummy
+            <table id="MeetingTimes">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td>Start Time</td>
+                        <td>End Time</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <input type="submit" id="CreateMeeting" class="center-data" value="Create Meeting" />
         </div>
     </div>
 </asp:Content>

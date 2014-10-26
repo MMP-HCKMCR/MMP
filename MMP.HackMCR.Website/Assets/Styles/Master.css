@@ -156,3 +156,34 @@ input[type=submit]:hover
     width: 79%;
     display: inline-block;
 }
+
+#MeetingTimes
+{
+    width: 60%;
+    margin: 0 auto;
+}
+
+#MeetingTimes thead
+{
+    font-weight: bold;
+}
+
+#MeetingTimes tr
+{
+    border-bottom: solid 1px black;
+}
+
+#MeetingTimes tr:hover
+{
+    background-color: orange;
+}
+
+#MeetingTimes td
+{
+    padding: 3px;
+}
+
+input[type=radio]
+{
+    margin-right: 20px;
+}
