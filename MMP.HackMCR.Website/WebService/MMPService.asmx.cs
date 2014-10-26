@@ -177,7 +177,7 @@ namespace MMP.HackMCR.Website.WebService
         #endregion
 
         [WebMethod]
-        public MeetingTime[] FindMeetingTimes(int userId, int groupId, int duration, string startDate, string endDate)
+        public MeetingTime[] FindMeetingTimes(int[] userIds, int[] groupIds, int duration, string startDate, string endDate)
         {
             DateTime realStartDate;
             DateTime.TryParse(startDate, out realStartDate);
@@ -185,14 +185,8 @@ namespace MMP.HackMCR.Website.WebService
             DateTime realEndDate;
             DateTime.TryParse(endDate, out realEndDate);
 
-            List<int> userIds = new List<int>();
-            userIds.Add(userId);
-
-            List<int> groupIds = new List<int>();
-            groupIds.Add(groupId);
-
             var meetingManager = new MeetingManager();
-            return meetingManager.FindMeetingTimes(userIds.ToArray(), groupIds.ToArray(), duration, realStartDate, realEndDate).ToArray();
+            return meetingManager.FindMeetingTimes(userIds, groupIds, duration, realStartDate, realEndDate).ToArray();
         }
 
         [WebMethod]

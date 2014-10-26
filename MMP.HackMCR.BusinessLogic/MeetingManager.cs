@@ -24,11 +24,9 @@ namespace MMP.HackMCR.BusinessLogic
             PopulateUsersToProcess(userIds, startDate, endDate);
             PopulateUsersFromGroups(groupIds, startDate, endDate);
 
-            CheckUsersHaveAvailbleMeetingTimeInCalander();
-
             ProcessMeetingDays();
 
-            SelectAvailableMeetingDates();
+            CheckUsersHaveAvailbleMeetingTimeInCalander();
 
             return _meetingTimes;
         }
@@ -68,7 +66,10 @@ namespace MMP.HackMCR.BusinessLogic
 
                     if (available)
                     {
-                        availableTimes.Add(meetingTime);
+                        if (CheckUserAvailableForMeetingDates(user, meetingTime))
+                        {
+                            availableTimes.Add(meetingTime);
+                        }
                     }
                 }
 
@@ -76,74 +77,62 @@ namespace MMP.HackMCR.BusinessLogic
             }
         }
 
-        private void SelectAvailableMeetingDates()
+        private bool CheckUserAvailableForMeetingDates(User user, MeetingTime meetingTime)
         {
-            foreach (var user in _usersToProcess)
+            bool available = true;
+
+            DateTime userStartTime = DateTime.Now;
+            DateTime userEndTime = DateTime.Now;
+
+            switch (meetingTime.StartTime.DayOfWeek)
             {
-                var availableTimes = new List<MeetingTime>();
+                case DayOfWeek.Sunday:
+                    userStartTime = user.SundayStartTime;
+                    userEndTime = user.SundayEndTime;
+                    break;
+                case DayOfWeek.Monday:
+                    userStartTime = user.MondayStartTime;
+                    userEndTime = user.MondayEndTime;
+                    break;
+                case DayOfWeek.Tuesday:
+                    userStartTime = user.TuesdayStartTime;
+                    userEndTime = user.TuesdayEndTime;
+                    break;
+                case DayOfWeek.Wednesday:
+                    userStartTime = user.WednesdayStartTime;
+                    userEndTime = user.WednesdayEndTime;
+                    break;
+                case DayOfWeek.Thursday:
+                    userStartTime = user.ThursdayStartTime;
+                    userEndTime = user.ThursdayEndTime;
+                    break;
+                case DayOfWeek.Friday:
+                    userStartTime = user.FridayStartTime;
+                    userEndTime = user.FridayEndTime;
+                    break;
+                case DayOfWeek.Saturday:
+                    userStartTime = user.SaturdayStartTime;
+                    userEndTime = user.SaturdayEndTime;
+                    break;
+            }
 
-                foreach (var meetingTime in _meetingTimes)
-                {
-                    bool available = true;
-
-                    DateTime userStartTime = DateTime.Now;
-                    DateTime userEndTime = DateTime.Now;
-
-                    switch (meetingTime.StartTime.DayOfWeek)
-                    {
-                        case DayOfWeek.Sunday:
-                            userStartTime = user.SundayStartTime;
-                            userEndTime = user.SundayEndTime;
-                            break;
-                        case DayOfWeek.Monday:
-                            userStartTime = user.MondayStartTime;
-                            userEndTime = user.MondayEndTime;
-                            break;
-                        case DayOfWeek.Tuesday:
-                            userStartTime = user.TuesdayStartTime;
-                            userEndTime = user.TuesdayEndTime;
-                            break;
-                        case DayOfWeek.Wednesday:
-                            userStartTime = user.WednesdayStartTime;
-                            userEndTime = user.WednesdayEndTime;
-                            break;
-                        case DayOfWeek.Thursday:
-                            userStartTime = user.ThursdayStartTime;
-                            userEndTime = user.ThursdayEndTime;
-                            break;
-                        case DayOfWeek.Friday:
-                            userStartTime = user.FridayStartTime;
-                            userEndTime = user.FridayEndTime;
-                            break;
-                        case DayOfWeek.Saturday:
-                            userStartTime = user.SaturdayStartTime;
-                            userEndTime = user.SaturdayEndTime;
-                            break;
-                    }
-
-                    var meetingStartTime = new DateTime(1970, 1, 1, meetingTime.StartTime.Hour,
+            var meetingStartTime = new DateTime(1970, 1, 1, meetingTime.StartTime.Hour,
                         meetingTime.StartTime.Minute, meetingTime.StartTime.Second);
-                    var meetingEndTime = new DateTime(1970, 1, 1, meetingTime.EndTime.Hour,
+
+            var meetingEndTime = new DateTime(1970, 1, 1, meetingTime.EndTime.Hour,
                         meetingTime.EndTime.Minute, meetingTime.EndTime.Second);
 
-                    if (meetingStartTime < userStartTime || meetingStartTime > userEndTime)
-                    {
-                        available = false;
-                    }
-
-                    if (meetingEndTime < userStartTime || meetingEndTime > userEndTime)
-                    {
-                        available = false;
-                    }
-
-                    if (available)
-                    {
-                        availableTimes.Add(meetingTime);
-                    }
-                }
-
-                _meetingTimes = availableTimes;   
+            if (meetingStartTime < userStartTime || meetingStartTime > userEndTime)
+            {
+                available = false;
             }
+
+            if (meetingEndTime < userStartTime || meetingEndTime > userEndTime)
+            {
+                available = false;
+            }
+
+            return available;
         }
 
         private void PopulateUsersToProcess(int[] userIds, DateTime startDate, DateTime endDate)
