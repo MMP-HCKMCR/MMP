@@ -34,7 +34,7 @@ namespace MMP.HackMCR.BusinessLogic
 
         public static List<User> GetUsersForGroupId(int groupId)
         {
-            return MapUsers(UserRepository.GetUsersForGroup(groupId));
+            return MapUsers(UserRepository.GetUsersForGroup(groupId), false);
         }
 
         public static User LoginUser(string email, string password)
@@ -42,14 +42,24 @@ namespace MMP.HackMCR.BusinessLogic
             return MapUser(UserRepository.LoginUser(email, password));
         }
 
-        public static List<User> MapUsers(List<DataAccess.Objects.User> users)
+        public static List<User> MapUsers(List<DataAccess.Objects.User> users, bool retrieveGroups = true)
         {
-            return users.Select(MapUser).ToList();
+            return users.Select(user => MapUser(user, retrieveGroups)).ToList();
         }
 
-        private static User MapUser(DataAccess.Objects.User user)
+        private static User MapUser(DataAccess.Objects.User user, bool retrieveGroups = true)
         {
-            var groups = GroupManager.GetGroupsForUser(user.UserId);
+            if (user == null)
+            {
+                return null;
+            }
+
+            var groups = new List<Group>();
+
+            if (retrieveGroups)
+            {
+                groups = GroupManager.GetGroupsForUser(user.UserId);
+            }
 
             return new User
             {

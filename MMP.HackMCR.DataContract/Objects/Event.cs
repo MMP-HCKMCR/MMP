@@ -38,5 +38,8 @@ namespace MMP.HackMCR.DataContract
             get { return _eventTime; }
             set { _eventTime = value; }
         }
+
+        [DataMember]
+        public bool UserActive { set; get; }
     }
 }

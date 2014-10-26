@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using MMP.HackMCR.DataContract.Objects;
 
 namespace MMP.HackMCR.DataContract
 {
@@ -56,5 +57,8 @@ namespace MMP.HackMCR.DataContract
 
         [DataMember]
         public string Email { set; get; }
+
+        [DataMember]
+        public Entries Entries { set; get; }
     }
 }

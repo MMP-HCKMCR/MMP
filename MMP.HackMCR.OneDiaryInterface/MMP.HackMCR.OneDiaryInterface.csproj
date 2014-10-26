@@ -44,9 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMP.HackMCR.DataAccess\MMP.HackMCR.DataAccess.csproj">
-      <Project>{af740c79-59a1-4144-9aba-d2b675e0f5b0}</Project>
-      <Name>MMP.HackMCR.DataAccess</Name>
+    <ProjectReference Include="..\MMP.HackMCR.DataContract\MMP.HackMCR.DataContract.csproj">
+      <Project>{7e1c4b12-fcdf-4a5e-8271-6bad36940074}</Project>
+      <Name>MMP.HackMCR.DataContract</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -245,9 +245,21 @@ namespace MMP.HackMCR.Website.WebService
         #endregion
 
         [WebMethod]
-        public void FindMeetingTimes(int[] userIds, int[] groupIds, DateTime startDate, DateTime endDate)
+        public void FindMeetingTimes(int userId, int groupId, string startDate, string endDate)
         {
-            MeetingManager.FindMeetingTimes(userIds, groupIds, startDate, endDate);
+            DateTime realStartDate;
+            DateTime.TryParse(startDate, out realStartDate);
+
+            DateTime realEndDate;
+            DateTime.TryParse(endDate, out realEndDate);
+
+            List<int> userIds = new List<int>();
+            userIds.Add(userId);
+
+            List<int> groupIds = new List<int>();
+            groupIds.Add(groupId);
+
+            MeetingManager.FindMeetingTimes(userIds.ToArray(), groupIds.ToArray(), realStartDate, realEndDate);
         }
     }
 }

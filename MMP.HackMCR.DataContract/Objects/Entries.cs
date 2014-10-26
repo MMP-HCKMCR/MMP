@@ -1,4 +1,4 @@
-﻿namespace MMP.HackMCR.DataAccess.Objects
+﻿namespace MMP.HackMCR.DataContract.Objects
 {
     public class Entries
     {

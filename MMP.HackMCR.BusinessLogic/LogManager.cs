@@ -13,6 +13,11 @@ namespace MMP.HackMCR.BusinessLogic
             return MapEvent(LogRespository.AddLogEntry(userId, eventTypeId, eventTime));
         }
 
+        public static List<Event> GetUserLogsForDayOfWeek(int userId, string dayOfTheWeek)
+        {
+            return MapEvents(LogRespository.GetUserLogsForDayOfWeek(userId, dayOfTheWeek));
+        }
+
         public static List<Event> MapEvents(List<DataAccess.Objects.Log> logs)
         {
             return logs.Select(MapEvent).ToList();
@@ -28,7 +33,8 @@ namespace MMP.HackMCR.BusinessLogic
                 EventId = log.LogId,
                 User = user,
                 EventType = new EventType(),
-                EventTime = log.EventTime
+                EventTime = log.EventTime,
+                UserActive = log.UserActive
             };
         }
     }

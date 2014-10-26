@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MMP.HackMCR.DataContract;
 
 namespace MMP.HackMCR.BusinessLogic
 {
@@ -8,37 +9,65 @@ namespace MMP.HackMCR.BusinessLogic
     {
         public static void FindMeetingTimes(int[] userIds, int[] groupIds, DateTime startDate, DateTime endDate)
         {
-            var userIdsToProcess = PopulateUsersToProcess(userIds);
-            userIdsToProcess = PopulateUsersFromGroups(groupIds, userIdsToProcess);
+            var usersToProcess = PopulateUsersToProcess(userIds, startDate, endDate);
+            usersToProcess = PopulateUsersFromGroups(groupIds, usersToProcess, startDate, endDate);
+
+            ProcessMeetingDays(usersToProcess, startDate, endDate);
         }
 
-        private static List<int> PopulateUsersToProcess(int[] userIds)
+        private static List<User> PopulateUsersToProcess(int[] userIds, DateTime startDate, DateTime endDate)
         {
-            var userIdsToProcess = new List<int>();
+            var usersToProcess = new List<User>();
 
             foreach (var userId in userIds)
             {
-                if (!userIdsToProcess.Contains(userId))
+                var user = UserManager.GetUser(userId);
+
+                if ((user != null) && !usersToProcess.Contains(user))
                 {
-                    userIdsToProcess.Add(userId);
+                    user.Entries = OneDiaryInterface.Inferface.GetCalanderEntries(user.Token, startDate, endDate);
+                    usersToProcess.Add(user);
                 }
             }
 
-            return userIdsToProcess;
+            return usersToProcess;
         }
 
-        private static List<int> PopulateUsersFromGroups(int[] groupIds, List<int> userIdsToProcess)
+        private static List<User> PopulateUsersFromGroups(int[] groupIds, List<User> usersToProcess, DateTime startDate, DateTime endDate)
         {
-            foreach (var user in 
-                        from groupId in groupIds 
-                        select UserManager.GetUsersForGroupId(groupId) 
-                        into users from user in users 
-                        where !userIdsToProcess.Contains(user.UserId) select user)
+            foreach (var groupId in groupIds)
             {
-                userIdsToProcess.Add(user.UserId);
+                var users = UserManager.GetUsersForGroupId(groupId);
+
+                foreach (var user in users)
+                {
+                    if (!usersToProcess.Contains(user))
+                    {
+                        user.Entries = OneDiaryInterface.Inferface.GetCalanderEntries(user.Token, startDate, endDate);
+                        usersToProcess.Add(user); 
+                    }
+                }
             }
 
-            return userIdsToProcess;
+            return usersToProcess;
+        }
+
+        private static void ProcessMeetingDays(List<User> usersToProcess, DateTime startDate, DateTime endDate)
+        {
+            var numberOfDays = endDate.Subtract(startDate).Days;
+
+            foreach (User user in usersToProcess)
+            {
+                for (int i = 0; i < numberOfDays; i++)
+                {
+                    GetWorkingHoursForDay(user.UserId, startDate.AddDays(i));
+                }
+            }
+        }
+
+        private static void GetWorkingHoursForDay(int userId, DateTime date)
+        {
+            var events = LogManager.GetUserLogsForDayOfWeek(userId, date.DayOfWeek.ToString());
         }
     }
 }

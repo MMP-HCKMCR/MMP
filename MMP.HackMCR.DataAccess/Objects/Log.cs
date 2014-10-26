@@ -8,5 +8,6 @@ namespace MMP.HackMCR.DataAccess.Objects
         public int UserId { set; get; }
         public int EventTypeId { set; get; }
         public DateTime EventTime { set; get; }
+        public bool UserActive { set; get; }
     }
 }

@@ -41,8 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataHelper.cs" />
-    <Compile Include="Objects\Entries.cs" />
-    <Compile Include="Objects\Entry.cs" />
     <Compile Include="Objects\EventType.cs" />
     <Compile Include="Objects\Group.cs" />
     <Compile Include="Objects\Log.cs" />

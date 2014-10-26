@@ -34,17 +34,27 @@ namespace MMP.HackMCR.BusinessLogic
 
         public static List<Group> GetGroupsForUser(int userId)
         {
-            return MapGroups(GroupRepository.GetGroupsForUserId(userId));
+            return MapGroups(GroupRepository.GetGroupsForUserId(userId), false);
         }
 
-        public static List<Group> MapGroups(List<DataAccess.Objects.Group> group)
+        public static List<Group> MapGroups(List<DataAccess.Objects.Group> groups, bool retrieveUsers = true)
         {
-            return group.Select(MapGroup).ToList();
+            return groups.Select(group => MapGroup(group, retrieveUsers)).ToList();
         }
 
-        private static Group MapGroup(DataAccess.Objects.Group group)
+        private static Group MapGroup(DataAccess.Objects.Group group, bool retrieveUsers = true)
         {
-            var users = UserManager.GetUsersForGroupId(group.GroupId);
+            if (group == null)
+            {
+                return null;
+            }
+
+            var users = new List<User>();
+
+            if (retrieveUsers)
+            {
+                users = UserManager.GetUsersForGroupId(group.GroupId);
+            }
 
             return new Group
             {

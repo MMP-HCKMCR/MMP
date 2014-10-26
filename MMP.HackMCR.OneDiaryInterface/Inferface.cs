@@ -2,7 +2,7 @@
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using MMP.HackMCR.DataAccess.Objects;
+using MMP.HackMCR.DataContract.Objects;
 
 namespace MMP.HackMCR.OneDiaryInterface
 {

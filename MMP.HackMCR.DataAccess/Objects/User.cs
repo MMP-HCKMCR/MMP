@@ -8,6 +8,5 @@
         public string Token { set; get; }
         public string MobilePhone { set; get; }
         public string Email { set; get; }
-        public Entries Entries { set; get; }
     }
 }

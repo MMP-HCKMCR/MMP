@@ -47,6 +47,17 @@ namespace MMP.HackMCR.DataAccess.Repositories
             return PopulateLogFromDataTable(DataHelper.PopulateTable("sp_AddLogForUserNameAndEventTypeName", parameters));
         }
 
+        public static List<Log> GetUserLogsForDayOfWeek(int userId, string dayOfTheWeek)
+        {
+            var parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@UserId", userId),
+                new SqlParameter("@DayOfTheWeek", dayOfTheWeek)
+            };
+
+            return PopulateLogsFromDataTable(DataHelper.PopulateTable("sp_GetLogDetailsForUserIdAndDayOfWeek", parameters));
+        }
+
         private static Log PopulateLogFromDataTable(DataTable dataTable)
         {
             return dataTable.Rows.Count > 0 ? PopulateLogFromDataRow(dataTable.Rows[0]) : null;
@@ -64,7 +75,8 @@ namespace MMP.HackMCR.DataAccess.Repositories
                 LogId = dataRow.Field<int>("LogId"),
                 UserId = dataRow.Field<int>("UserId"),
                 EventTypeId = dataRow.Field<int>("EventTypeId"),
-                EventTime = dataRow.Field<DateTime>("EventTime")
+                EventTime = dataRow.Field<DateTime>("EventTime"),
+                UserActive = dataRow.Field<bool>("UserActive")
             };
         }
     }
