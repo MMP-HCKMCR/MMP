@@ -17,7 +17,7 @@ function bindEvents() {
         checkEmpty('#OneDiaryToken', '#TokenError', 'Please enter your One Diary Token');
 
         checkRegex('#Email', '^.*?@.+\..+$', '#EmailError', 'Please enter a valid email');
-        checkRegex('#MobileNumber', '^[0-9]+$', '#MobileError', 'Please enter a valid mobile number');
+        checkRegex('#MobileNumber', '^[0-9]{1,11}$', '#MobileError', 'Please enter a valid mobile number');
 
         if (hasErrors()) {
             return;
