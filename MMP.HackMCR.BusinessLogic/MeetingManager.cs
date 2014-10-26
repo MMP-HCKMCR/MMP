@@ -314,7 +314,7 @@ namespace MMP.HackMCR.BusinessLogic
             {
                 var user = UserManager.GetUser(userId);
 
-                OneDiaryInterface.Inferface.AddCalanderEntry(user.Token, user.Entries.events[0].calendar_id, summary, description, startDate, endDate);
+                OneDiaryInterface.Inferface.AddCalanderEntry(user.Token, summary, description, startDate, endDate);
             }
             
         }

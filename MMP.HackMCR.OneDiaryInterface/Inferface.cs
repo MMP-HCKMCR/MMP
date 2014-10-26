@@ -64,15 +64,16 @@ namespace MMP.HackMCR.OneDiaryInterface
             return result;
         }
 
-        public static void AddCalanderEntry(string userToken, string calendarId, string summary, string description, string startDate, string endDate)
+        public static void AddCalanderEntry(string userToken, string summary, string description, string startDate, string endDate)
         {
+            string calendarId = UserCalanders(userToken);
             var entry = new Entry
             {
                 summary = summary,
                 description = description,
                 start = startDate,
                 end = endDate,
-                calendar_id = UserCalanders(userToken)
+                calendar_id = calendarId
             };
 
             var url = new StringBuilder("https://api.onediary.com/v1/calendars/");
