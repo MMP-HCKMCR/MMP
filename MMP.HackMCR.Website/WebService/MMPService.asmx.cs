@@ -83,6 +83,12 @@ namespace MMP.HackMCR.Website.WebService
         {
 
         }
+
+        [WebMethod]
+        public User LoginUser(string email, string password)
+        {
+            return UserManager.LoginUser(email, password);
+        }
         #endregion
 
         #region Group
@@ -239,9 +245,9 @@ namespace MMP.HackMCR.Website.WebService
         #endregion
 
         [WebMethod]
-        public void TestAPI()
+        public void FindMeetingTimes(int[] userIds, int[] groupIds, DateTime startDate, DateTime endDate)
         {
-            OneDiaryInterface.Inferface.GetCalanderEntries();
+            MeetingManager.FindMeetingTimes(userIds, groupIds, startDate, endDate);
         }
     }
 }

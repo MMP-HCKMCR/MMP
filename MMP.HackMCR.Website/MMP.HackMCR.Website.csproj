@@ -166,10 +166,6 @@
       <Project>{7e1c4b12-fcdf-4a5e-8271-6bad36940074}</Project>
       <Name>MMP.HackMCR.DataContract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MMP.HackMCR.OneDiaryInterface\MMP.HackMCR.OneDiaryInterface.csproj">
-      <Project>{45b7c47f-6bd3-4032-addf-211d191a0670}</Project>
-      <Name>MMP.HackMCR.OneDiaryInterface</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MMP.HackMCR.DataAccess.Objects
+﻿namespace MMP.HackMCR.DataAccess.Objects
 {
     public class User
     {
@@ -14,5 +8,6 @@ namespace MMP.HackMCR.DataAccess.Objects
         public string Token { set; get; }
         public string MobilePhone { set; get; }
         public string Email { set; get; }
+        public Entries Entries { set; get; }
     }
 }

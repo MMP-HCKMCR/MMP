@@ -1,32 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
-using MMP.HackMCR.OneDiaryInterface.ResponseObjects;
+using MMP.HackMCR.DataAccess.Objects;
 
 namespace MMP.HackMCR.OneDiaryInterface
 {
     public static class Inferface
     {
-        public static void GetCalanderEntries()
+        public static Entries GetCalanderEntries(string userToken, DateTime startDate, DateTime endDate)
         {
-            var webRequest = WebRequest.Create("https://api.onediary.com/v1/events?from=26/10/2014&to=01/11/2014&tzid=Etc/UTC");
-            webRequest.Headers.Add("Authorization", "Bearer wjF0pyepu62HlYsku6A5WijkOiUyZk2j");
+            var url = new StringBuilder("https://api.onediary.com/v1/events?from=");
+            url.Append(startDate.ToShortDateString());
+            url.Append("&to=");
+            url.Append(endDate.ToShortDateString());
+            url.Append("&tzid=Etc/UTC");
+
+            var webRequest = WebRequest.Create(url.ToString());
+            webRequest.Headers.Add("Authorization", string.Format("Bearer {0}", userToken));
 
             var response = webRequest.GetResponse();
 
-            Events result = null;
+            Entries entries = null;
 
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Events));
+            var serializer = new DataContractJsonSerializer(typeof(Entries));
 
             if (response.GetResponseStream() != null)
             {
-                result = (Events) serializer.ReadObject(response.GetResponseStream());
+                entries = (Entries)serializer.ReadObject(response.GetResponseStream());
             }
+
+            return entries;
         }
     }
 }
