@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Services;
 using MMP.HackMCR.BusinessLogic;
 using MMP.HackMCR.DataContract;
-using System;
 
-namespace MMP.HackMCR.WebService
+namespace MMP.HackMCR.Website.WebService
 {
     /// <summary>
     /// Summary description for MMPService

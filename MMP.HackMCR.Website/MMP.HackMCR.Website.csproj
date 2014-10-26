@@ -64,6 +64,7 @@
     <Content Include="Assets\Styles\Master.css" />
     <Content Include="Default.aspx" />
     <Content Include="Layout.Master" />
+    <Content Include="WebService\MMPService.asmx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,6 +130,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="WebService\MMPService.asmx.cs">
+      <DependentUpon>MMPService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Images\" />
@@ -151,6 +156,20 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>MMP_HackMCR_Website_MMPWebService_MMPService</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MMP.HackMCR.BusinessLogic\MMP.HackMCR.BusinessLogic.csproj">
+      <Project>{218a73eb-d4a7-4400-bfb0-1e2e81125172}</Project>
+      <Name>MMP.HackMCR.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMP.HackMCR.DataContract\MMP.HackMCR.DataContract.csproj">
+      <Project>{7e1c4b12-fcdf-4a5e-8271-6bad36940074}</Project>
+      <Name>MMP.HackMCR.DataContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMP.HackMCR.OneDiaryInterface\MMP.HackMCR.OneDiaryInterface.csproj">
+      <Project>{45b7c47f-6bd3-4032-addf-211d191a0670}</Project>
+      <Name>MMP.HackMCR.OneDiaryInterface</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
