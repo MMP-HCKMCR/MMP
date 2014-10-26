@@ -13,5 +13,6 @@ namespace MMP.HackMCR.Website
         {
             Master.PageName = "Register";
         }
+
     }
 }

@@ -1,5 +1,15 @@
 ﻿
-mAll20
+.mAll20
 {
     margin: 20px;
+}
+
+.w300p
+{
+    width: 300px !important;
+}
+
+.w131p
+{
+    width: 131px !important;
 }
